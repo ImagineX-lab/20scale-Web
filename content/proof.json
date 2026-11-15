@@ -1,0 +1,59 @@
+
+{
+  "_meta": {
+    "rule": "Show only real, verified information with permission. Empty arrays must hide their sections."
+  },
+  "clients": [],
+  "testimonials": [],
+  "caseStudies": [],
+  "caseStudyTemplate": {
+    "client": null,
+    "industry": null,
+    "problem": {
+      "en": "",
+      "si": ""
+    },
+    "solution": {
+      "en": "",
+      "si": ""
+    },
+    "result": {
+      "en": "",
+      "si": ""
+    },
+    "quote": null,
+    "permission": false
+  },
+  "certifications": [],
+  "awards": [],
+  "team": {
+    "show": false,
+    "members": []
+  },
+  "teamMemberTemplate": {
+    "name": null,
+    "role": null,
+    "photo": null,
+    "linkedin": null,
+    "bio": {
+      "en": "",
+      "si": ""
+    }
+  },
+  "forbiddenClaims": [
+    "#1 / best / largest",
+    "ISO / PCI / GDPR / HIPAA certifications",
+    "Guaranteed uptime percentages",
+    "Fake star ratings",
+    "1000+ businesses",
+    "AI-powered unless actually built",
+    "Unverified client results"
+  ],
+  "displayRules": [
+    "Do not show placeholder client logos.",
+    "Do not invent testimonials.",
+    "Do not display team members until their information is confirmed.",
+    "Do not display certifications or awards without evidence.",
+    "Only publish case studies after receiving permission."
+  ]
+}

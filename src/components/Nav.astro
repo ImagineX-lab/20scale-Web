@@ -1,0 +1,334 @@
+---
+import type { Lang } from '../i18n/index';
+import { t, switchLangUrl } from '../i18n/index';
+
+interface Props {
+  lang: Lang;
+  currentUrl: URL;
+}
+
+const { lang, currentUrl } = Astro.props;
+
+const navLinks = [
+  { key: 'nav.home',      path: '/' },
+  { key: 'nav.solutions', path: '/solutions' },
+  { key: 'nav.pricing',   path: '/pricing' },
+  { key: 'nav.process',   path: '/process' },
+  { key: 'nav.about',     path: '/about' },
+  { key: 'nav.faq',       path: '/faq' },
+  { key: 'nav.contact',   path: '/contact' },
+] as const;
+
+// Resolve paths for English: prepend /en
+function resolveHref(path: string): string {
+  if (lang === 'en') {
+    return path === '/' ? '/en' : `/en${path}`;
+  }
+  return path;
+}
+
+// Active link detection
+function isActive(path: string): boolean {
+  const href = resolveHref(path);
+  if (href === '/en' || href === '/') {
+    return currentUrl.pathname === href;
+  }
+  return currentUrl.pathname.startsWith(href);
+}
+
+const switchUrl = switchLangUrl(currentUrl, lang === 'si' ? 'en' : 'si');
+const switchLabel = t(lang, 'nav.switchLang');
+---
+
+<header class="nav-header" role="banner">
+  <div class="nav-inner">
+    <!-- Skip to content -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Logo -->
+    <a href={lang === 'en' ? '/en' : '/'} class="nav-logo" aria-label="20Scale – Home">
+      2<span class="logo-zero">0</span>Scale
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav-links" aria-label="Main navigation">
+      {navLinks.map(({ key, path }) => (
+        <a
+          href={resolveHref(path)}
+          class:list={['nav-link', { 'nav-link--active': isActive(path) }]}
+          aria-current={isActive(path) ? 'page' : undefined}
+        >
+          {t(lang, key)}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right side: lang switcher + hamburger -->
+    <div class="nav-actions">
+      <!-- Language switcher -->
+      <a href={switchUrl} class="lang-pill" aria-label={`Switch to ${lang === 'si' ? 'English' : 'Sinhala'}`}>
+        {switchLabel}
+      </a>
+
+      <!-- Hamburger (checkbox hack — no JS) -->
+      <label class="hamburger-label" for="nav-toggle" aria-label={t(lang, 'nav.openMenu')}>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Mobile nav toggle (hidden checkbox) -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <nav aria-label="Mobile navigation links">
+      {navLinks.map(({ key, path }) => (
+        <a
+          href={resolveHref(path)}
+          class:list={['mobile-link', { 'mobile-link--active': isActive(path) }]}
+          aria-current={isActive(path) ? 'page' : undefined}
+        >
+          {t(lang, key)}
+        </a>
+      ))}
+      <a href={switchUrl} class="mobile-lang-switch">
+        {lang === 'si' ? 'English' : 'සිංහල'}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* ---- Header shell ---- */
+  .nav-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 3, 11, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  /* ---- Skip link ---- */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 8px;
+    background: var(--color-primary);
+    color: #00030B;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    z-index: 200;
+  }
+  .skip-link:focus {
+    left: 1rem;
+  }
+
+  /* ---- Logo ---- */
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .logo-zero {
+    color: var(--color-primary);
+  }
+
+  /* ---- Desktop nav links ---- */
+  .nav-links {
+    display: none;
+    gap: 0.25rem;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    padding: 0.375rem 0.625rem;
+    border-radius: 6px;
+    transition: color 0.2s, background-color 0.2s;
+    position: relative;
+    white-space: nowrap;
+  }
+  .nav-link:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+  .nav-link--active {
+    color: var(--color-primary);
+  }
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0.625rem;
+    right: 0.625rem;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 999px;
+  }
+
+  /* ---- Nav actions ---- */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+  }
+
+  /* ---- Language pill ---- */
+  .lang-pill {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-pill);
+    padding: 0.25rem 0.75rem;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .lang-pill:hover {
+    background-color: var(--color-primary);
+    color: #00030B;
+  }
+
+  /* ---- Hamburger ---- */
+  .nav-toggle {
+    display: none;
+  }
+
+  .hamburger-label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+  }
+  .hamburger-label:hover {
+    background: var(--color-surface);
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 999px;
+    transition: transform 0.25s, opacity 0.25s;
+    transform-origin: center;
+  }
+
+  /* Animate hamburger to X when checked */
+  .nav-toggle:checked ~ * .hamburger-label .hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle:checked ~ * .hamburger-label .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked ~ * .hamburger-label .hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ---- Mobile menu ---- */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: 1rem 1.25rem 1.5rem;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-toggle:checked + .mobile-menu {
+    display: flex;
+    max-height: 600px;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.2s;
+  }
+  .mobile-link:last-of-type {
+    border-bottom: none;
+  }
+  .mobile-link:hover,
+  .mobile-link--active {
+    color: var(--color-primary);
+  }
+
+  .mobile-lang-switch {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-pill);
+    padding: 0.375rem 1rem;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .mobile-lang-switch:hover {
+    background-color: var(--color-primary);
+    color: #00030B;
+  }
+
+  /* ---- Responsive: show desktop nav on larger screens ---- */
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+    .hamburger-label {
+      display: none;
+    }
+    .mobile-menu,
+    .nav-toggle:checked + .mobile-menu {
+      display: none !important;
+    }
+  }
+
+  /* ---- Reduced motion ---- */
+  @media (prefers-reduced-motion: reduce) {
+    .hamburger-bar,
+    .mobile-menu,
+    .nav-link,
+    .lang-pill,
+    .mobile-link,
+    .mobile-lang-switch {
+      transition: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import type { Lang } from '../i18n/index';
+
+interface Props {
+  title: string;
+  lang: Lang;
+  description?: string;
+}
+
+const { title, lang, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang === 'si' ? 'si' : 'en'} class={`lang-${lang}`}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts: Manrope (headings), Inter (body), Noto Sans Sinhala -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body class={`lang-${lang}`}>
+    <Nav lang={lang} currentUrl={Astro.url} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

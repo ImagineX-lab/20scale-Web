@@ -1,0 +1,51 @@
+
+{
+  "_meta": {
+    "note": "Only display real hardware items with verified vendor details and prices. Never invent prices or vendors.",
+    "model": "vendor-referral-transparent",
+    "visibility": "hide_entire_section_when_no_verified_items"
+  },
+  "promise": {
+    "en": "We recommend suitable hardware and connect you directly to the vendor at the real price.",
+    "si": "නිවැරදි hardware නිර්දේශ කිරීමෙන් පසු ඔබව සැබෑ මිලට vendor සමඟ කෙලින්ම සම්බන්ධ කරමු."
+  },
+  "categories": [],
+  "itemTemplate": {
+    "id": null,
+    "name": {
+      "en": "",
+      "si": ""
+    },
+    "vendor": {
+      "name": null,
+      "contact": null,
+      "location": null
+    },
+    "vendorPrice": null,
+    "currency": "LKR",
+    "ourMargin": 0,
+    "warrantyMonths": null,
+    "inStock": null,
+    "image": null,
+    "verified": false
+  },
+  "availableCategoriesForFuture": [
+    "POS Terminals / Computers",
+    "Desktop PCs",
+    "Thermal Receipt Printers",
+    "Barcode Scanners",
+    "Barcode Label Printers",
+    "Cash Drawers",
+    "Weighing Scales",
+    "Customer Displays",
+    "Fingerprint Attendance Devices"
+  ],
+  "displayRules": [
+    "Show only items where verified is true.",
+    "Require vendor name, contact and verified vendor price.",
+    "Show vendor price directly without hidden markup.",
+    "Do not show unavailable or unverified stock information.",
+    "Hide the entire hardware page and navigation link when there are no verified items."
+  ],
+  "supportBoundary": "Hardware warranty claims and physical hardware failures are handled by the hardware vendor. Software support is handled according to the agreed software support policy."
+}

@@ -1,0 +1,154 @@
+---
+import type { Lang } from '../i18n/index';
+import { t } from '../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const navLinks = [
+  { key: 'nav.home',      path: '/' },
+  { key: 'nav.solutions', path: '/solutions' },
+  { key: 'nav.pricing',   path: '/pricing' },
+  { key: 'nav.process',   path: '/process' },
+  { key: 'nav.about',     path: '/about' },
+  { key: 'nav.faq',       path: '/faq' },
+  { key: 'nav.contact',   path: '/contact' },
+] as const;
+
+function resolveHref(path: string): string {
+  if (lang === 'en') {
+    return path === '/' ? '/en' : `/en${path}`;
+  }
+  return path;
+}
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <a href={lang === 'en' ? '/en' : '/'} class="footer-logo" aria-label="20Scale – Home">
+        2<span class="logo-zero">0</span>Scale
+      </a>
+      <p class="footer-tagline">{t(lang, 'footer.tagline')}</p>
+      <a href={`mailto:${t(lang, 'footer.email')}`} class="footer-email">
+        {t(lang, 'footer.email')}
+      </a>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="footer-nav" aria-label="Footer navigation">
+      {navLinks.map(({ key, path }) => (
+        <a href={resolveHref(path)} class="footer-link">
+          {t(lang, key)}
+        </a>
+      ))}
+    </nav>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p class="footer-copy">{t(lang, 'footer.copyright')}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* ---- Brand column ---- */
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+  .logo-zero {
+    color: var(--color-primary);
+  }
+
+  .footer-tagline {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 36ch;
+    margin-bottom: 1rem;
+  }
+
+  .footer-email {
+    font-size: 0.9375rem;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+  .footer-email:hover {
+    color: var(--color-text);
+  }
+
+  /* ---- Nav column ---- */
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    align-content: flex-start;
+  }
+
+  .footer-link {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    padding: 0.25rem 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .footer-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* ---- Bottom bar ---- */
+  .footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding: 1.25rem 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .footer-copy {
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+  }
+
+  /* ---- Responsive ---- */
+  @media (min-width: 640px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ---- Reduced motion ---- */
+  @media (prefers-reduced-motion: reduce) {
+    .footer-email,
+    .footer-link {
+      transition: none !important;
+    }
+  }
+</style>

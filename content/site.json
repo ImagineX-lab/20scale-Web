@@ -1,0 +1,594 @@
+
+{
+  "brand": {
+    "name": "20Scale",
+    "tagline": {
+      "si": "ඔබේ ව්‍යාපාරය ඉදිරියට ගෙනයන මෘදුකාංග විසඳුම්",
+      "en": "Practical Software Solutions for Growing Businesses"
+    },
+    "description": {
+      "si": "ශ්‍රී ලංකාවේ ව්‍යාපාර සඳහා POS පද්ධති, ව්‍යාපාර කළමනාකරණ පද්ධති සහ custom software solutions.",
+      "en": "POS systems, business management tools and custom software solutions for businesses in Sri Lanka."
+    },
+    "email": "20scalesolutions@gmail.com",
+    "location": "Sri Lanka",
+    "logo": null,
+    "favicon": null
+  },
+  "projectStatus": {
+    "version": "1.0.0",
+    "mode": "static_showcase",
+    "backend": false,
+    "database": false,
+    "authentication": false,
+    "onlinePayments": false,
+    "formsSubmission": false,
+    "googleAppsScript": false,
+    "calculator": false,
+    "chatbot": false,
+    "analytics": false
+  },
+  "languages": {
+    "primary": "si",
+    "secondary": "en",
+    "default": "si",
+    "switcher": true,
+    "urlStrategy": {
+      "si": "/",
+      "en": "/en"
+    },
+    "fallback": "si"
+  },
+  "design": {
+    "direction": "modern, minimal, professional, technology-focused",
+    "theme": "dark",
+    "background": "deep navy",
+    "accent": "electric blue",
+    "secondaryAccent": "cyan",
+    "styleReferences": [
+      "modern SaaS websites",
+      "clean enterprise software websites",
+      "minimal dark technology interfaces"
+    ],
+    "requirements": [
+      "Premium and trustworthy visual appearance",
+      "Clear Sinhala typography",
+      "Excellent mobile responsiveness",
+      "Subtle animations only",
+      "Readable pricing cards",
+      "Consistent spacing and typography",
+      "Strong visual hierarchy",
+      "Avoid excessive gradients and glowing effects",
+      "Avoid generic AI-generated website appearance"
+    ]
+  },
+  "technology": {
+    "framework": "Next.js",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS",
+    "rendering": "Static Site Generation",
+    "output": "export",
+    "deploymentTarget": "Vercel preview initially",
+    "backend": "None for version 1",
+    "contentSource": "Local JSON files",
+    "requirements": [
+      "Use Next.js App Router",
+      "Use static export configuration",
+      "Use reusable React components",
+      "Use local JSON content",
+      "Do not create API routes",
+      "Do not require a database",
+      "Do not require environment variables for version 1",
+      "Keep the project ready for future backend integration"
+    ]
+  },
+  "navigation": [
+    {
+      "path": "/",
+      "label": {
+        "si": "මුල් පිටුව",
+        "en": "Home"
+      }
+    },
+    {
+      "path": "/solutions",
+      "label": {
+        "si": "විසඳුම්",
+        "en": "Solutions"
+      }
+    },
+    {
+      "path": "/pricing",
+      "label": {
+        "si": "මිල ගණන්",
+        "en": "Pricing"
+      }
+    },
+    {
+      "path": "/hardware",
+      "label": {
+        "si": "Hardware",
+        "en": "Hardware"
+      },
+      "visibility": "hide_until_vendor_data_available"
+    },
+    {
+      "path": "/process",
+      "label": {
+        "si": "අපි වැඩ කරන ආකාරය",
+        "en": "Our Process"
+      }
+    },
+    {
+      "path": "/about",
+      "label": {
+        "si": "අප ගැන",
+        "en": "About Us"
+      }
+    },
+    {
+      "path": "/faq",
+      "label": {
+        "si": "ප්‍රශ්න",
+        "en": "FAQ"
+      }
+    },
+    {
+      "path": "/contact",
+      "label": {
+        "si": "සම්බන්ධ වන්න",
+        "en": "Contact"
+      }
+    }
+  ],
+  "pages": {
+    "home": {
+      "sections": [
+        "hero",
+        "business_problems",
+        "solutions_overview",
+        "why_choose_us",
+        "how_we_work",
+        "pricing_preview",
+        "faq_preview",
+        "contact_cta"
+      ]
+    },
+    "solutions": {
+      "sections": [
+        "pos_systems",
+        "inventory_management",
+        "business_management_software",
+        "custom_software",
+        "website_development",
+        "industries"
+      ]
+    },
+    "pricing": {
+      "sections": [
+        "pricing_principles",
+        "packages",
+        "price_breakdown_explanation",
+        "pricing_faq",
+        "quote_cta"
+      ],
+      "calculator": false,
+      "showIndicativePrices": true,
+      "disclaimer": {
+        "si": "මෙහි පෙන්වා ඇති මිල ගණන් මූලික ඇස්තමේන්තු වේ. අවසාන මිල ව්‍යාපාරයේ අවශ්‍යතා සහ එකඟ වූ වැඩ ප්‍රමාණය අනුව තහවුරු කරනු ලැබේ.",
+        "en": "Displayed prices are indicative starting prices. Final pricing is confirmed after reviewing your business requirements and project scope."
+      }
+    },
+    "hardware": {
+      "sections": [
+        "vendor_referral_explanation",
+        "hardware_categories"
+      ],
+      "showPageOnlyWhenDataAvailable": true
+    },
+    "process": {
+      "sections": [
+        "understand_requirements",
+        "plan_solution",
+        "design_and_development",
+        "testing",
+        "installation_and_handover",
+        "ongoing_support"
+      ]
+    },
+    "about": {
+      "sections": [
+        "company_story",
+        "mission",
+        "vision",
+        "team"
+      ],
+      "showTeamOnlyWhenRealProfilesExist": true
+    },
+    "contact": {
+      "sections": [
+        "email",
+        "location",
+        "contact_cta"
+      ],
+      "email": "20scalesolutions@gmail.com",
+      "showPhone": false,
+      "showWhatsApp": false,
+      "showContactForm": false
+    },
+    "faq": {
+      "sections": [
+        "general_questions",
+        "software_questions",
+        "pricing_questions",
+        "support_questions"
+      ]
+    }
+  },
+  "services": [
+    {
+      "id": "pos",
+      "name": {
+        "si": "POS පද්ධති",
+        "en": "POS Systems"
+      },
+      "description": {
+        "si": "විකුණුම්, බිල්පත් සහ දෛනික ව්‍යාපාරික කටයුතු පහසු කරගැනීමට.",
+        "en": "Simplify sales, billing and everyday business operations."
+      },
+      "status": "available"
+    },
+    {
+      "id": "inventory",
+      "name": {
+        "si": "Stock සහ Inventory Management",
+        "en": "Stock & Inventory Management"
+      },
+      "description": {
+        "si": "භාණ්ඩ තොග, විකුණුම් සහ අඩු තොග පහසුවෙන් කළමනාකරණය කිරීමට.",
+        "en": "Manage products, sales and low-stock information more easily."
+      },
+      "status": "available"
+    },
+    {
+      "id": "business-software",
+      "name": {
+        "si": "Business Management Software",
+        "en": "Business Management Software"
+      },
+      "description": {
+        "si": "ඔබේ ව්‍යාපාරයේ විශේෂ අවශ්‍යතාවලට ගැළපෙන මෘදුකාංග.",
+        "en": "Software tailored to your business requirements."
+      },
+      "status": "consultation"
+    },
+    {
+      "id": "custom-software",
+      "name": {
+        "si": "Custom Software Development",
+        "en": "Custom Software Development"
+      },
+      "description": {
+        "si": "ඔබේ workflow එකට ගැළපෙන custom software solutions.",
+        "en": "Custom software solutions designed around your workflow."
+      },
+      "status": "consultation"
+    },
+    {
+      "id": "websites",
+      "name": {
+        "si": "Website Development",
+        "en": "Website Development"
+      },
+      "description": {
+        "si": "ඔබේ ව්‍යාපාරය online පෙන්වීමට නවීන සහ responsive websites.",
+        "en": "Modern, responsive websites to establish your business online."
+      },
+      "status": "consultation"
+    }
+  ],
+  "industries": [
+    "Retail / Grocery",
+    "Hardware / Building Materials",
+    "Auto Spare Parts",
+    "Bookshops",
+    "Clothing",
+    "Restaurants / Cafes",
+    "Distributors",
+    "Other Small and Medium Businesses"
+  ],
+  "pricing": {
+    "currency": "LKR",
+    "status": "proposed_pending_owner_approval",
+    "billing": "one-time",
+    "principles": [
+      {
+        "si": "ඔබට පෙනෙන්නේ එකම මුළු මිලක් සහ එය හැදෙන ආකාරයයි.",
+        "en": "You see one total price and exactly how it is built."
+      },
+      {
+        "si": "සැඟවුණු මාසික ගාස්තු හෝ අමතර service charges නැත.",
+        "en": "No hidden monthly fees or surprise service charges."
+      },
+      {
+        "si": "Hardware සඳහා vendor ගේ සැබෑ මිල පෙන්වනු ලැබේ.",
+        "en": "Hardware is shown at the vendor's real price."
+      },
+      {
+        "si": "එකඟ වූ වැඩ සහ deliverables සම්පූර්ණ ගෙවීමෙන් පසු භාරදෙනු ලැබේ.",
+        "en": "Agreed deliverables are handed over after full payment."
+      }
+    ],
+    "packages": [
+      {
+        "id": "desktop",
+        "name": {
+          "si": "Desktop",
+          "en": "Desktop"
+        },
+        "price": 70000,
+        "billing": "one-time",
+        "recurring": null,
+        "features": [
+          {
+            "si": "Offline භාවිතා කළ හැක",
+            "en": "Works offline"
+          },
+          {
+            "si": "ව්‍යාපාරයේ අවශ්‍යතාවලට ගැළපෙන ලෙස සකස් කිරීම",
+            "en": "Customised to agreed business requirements"
+          },
+          {
+            "si": "User manual සහ මූලික remote training",
+            "en": "User manual and basic remote training"
+          }
+        ]
+      },
+      {
+        "id": "cloud",
+        "name": {
+          "si": "Cloud",
+          "en": "Cloud"
+        },
+        "price": 60000,
+        "billing": "one-time",
+        "recurring": {
+          "label": "Yearly hosting",
+          "amount": 18000,
+          "period": "year"
+        },
+        "features": [
+          {
+            "si": "Internet හරහා ප්‍රවේශය",
+            "en": "Access over the internet"
+          },
+          {
+            "si": "Multi-branch support, project scope අනුව",
+            "en": "Multi-branch support, subject to project scope"
+          },
+          {
+            "si": "Mobile dashboard, project scope අනුව",
+            "en": "Mobile dashboard, subject to project scope"
+          }
+        ],
+        "status": "proposed_pending_technical_validation"
+      },
+      {
+        "id": "hybrid",
+        "name": {
+          "si": "Hybrid (Desktop + Cloud)",
+          "en": "Hybrid (Desktop + Cloud)"
+        },
+        "price": 90000,
+        "billing": "one-time",
+        "recurring": {
+          "label": "Yearly hosting",
+          "amount": 18000,
+          "period": "year"
+        },
+        "features": [
+          {
+            "si": "Offline සහ online භාවිතය",
+            "en": "Offline and online access"
+          },
+          {
+            "si": "Online වූ විට data sync කිරීම",
+            "en": "Data synchronisation when online"
+          }
+        ],
+        "status": "proposed_pending_technical_validation"
+      }
+    ],
+    "extras": {
+      "extraCashierStation": 10000,
+      "extraBranch": 15000,
+      "hostingPerYear": 18000,
+      "dataEntryPerPersonPerDay": 5000,
+      "installationAndTraining": 7500,
+      "transportPerKm": 100
+    },
+    "breakdownLines": [
+      "software_development",
+      "extra_cashier_stations",
+      "extra_branches",
+      "hosting_first_year",
+      "hardware_at_vendor_price",
+      "data_entry_or_migration",
+      "installation_and_training",
+      "onsite_transport",
+      "discount_offer"
+    ],
+    "discounts": {
+      "standingPromotion": false,
+      "bulkDiscount": null,
+      "note": "Case-by-case discounts only."
+    },
+    "founderOffer": {
+      "active": false,
+      "slots": 20,
+      "claimed": null,
+      "reason": "Warranty and support wording needs owner confirmation."
+    }
+  },
+  "hardware": {
+    "model": "vendor-referral-transparent",
+    "visible": false,
+    "promise": {
+      "si": "නිවැරදි hardware නිර්දේශ කිරීමේ වගකීම අපි දරමු; ඔබ සැබෑ මිලට vendor සමඟ කෙලින්ම ගනුදෙනු කරයි.",
+      "en": "We recommend suitable hardware and connect you directly to the vendor at the real price."
+    },
+    "categories": [],
+    "visibilityRule": "Show hardware page only when real vendor name, contact and verified price are available."
+  },
+  "portfolio": {
+    "clients": [],
+    "testimonials": [],
+    "caseStudies": [],
+    "certifications": [],
+    "awards": [],
+    "visibilityRule": "Do not show empty sections or placeholder clients. Show only real projects with permission."
+  },
+  "team": {
+    "show": false,
+    "members": [],
+    "visibilityRule": "Show team section only after all displayed member details are confirmed."
+  },
+  "trustAndClaims": {
+    "forbiddenClaims": [
+      "#1",
+      "Best",
+      "Largest",
+      "ISO certification",
+      "PCI compliance",
+      "GDPR compliance",
+      "HIPAA compliance",
+      "Guaranteed uptime percentage",
+      "Fake star ratings",
+      "1000+ businesses",
+      "AI-powered unless the feature is actually built"
+    ],
+    "rules": [
+      "Never invent customers, testimonials or case studies.",
+      "Never invent founder names or qualifications.",
+      "Never claim an unbuilt feature is available.",
+      "Never claim a warranty or support period until confirmed.",
+      "Never display unverified hardware prices."
+    ]
+  },
+  "process": [
+    {
+      "id": "requirements",
+      "si": "ඔබේ ව්‍යාපාරය සහ අවශ්‍යතා හඳුනාගැනීම",
+      "en": "Understand your business and requirements"
+    },
+    {
+      "id": "planning",
+      "si": "සුදුසු විසඳුම සැලසුම් කිරීම",
+      "en": "Plan the right solution"
+    },
+    {
+      "id": "development",
+      "si": "Design සහ development",
+      "en": "Design and development"
+    },
+    {
+      "id": "testing",
+      "si": "පරීක්ෂා කිරීම සහ සංශෝධනය",
+      "en": "Testing and refinement"
+    },
+    {
+      "id": "handover",
+      "si": "Installation සහ භාරදීම",
+      "en": "Installation and handover"
+    },
+    {
+      "id": "support",
+      "si": "එකඟ වූ පරිදි පසුකාලීන සහාය",
+      "en": "Support as agreed"
+    }
+  ],
+  "contact": {
+    "email": "20scalesolutions@gmail.com",
+    "location": "Sri Lanka",
+    "phone": null,
+    "whatsapp": null,
+    "address": null,
+    "showEmail": true,
+    "showPhone": false,
+    "showWhatsApp": false
+  },
+  "forms": {
+    "enabled": false,
+    "futureBackend": "Google Apps Script Web App",
+    "futureStorage": "Google Sheets",
+    "futureNotificationEmail": "20scalesolutions@gmail.com"
+  },
+  "analytics": {
+    "enabled": false,
+    "futureOptions": [
+      "Google Search Console",
+      "Privacy-conscious analytics"
+    ]
+  },
+  "seo": {
+    "siteName": "20Scale",
+    "defaultTitle": {
+      "si": "20Scale | ව්‍යාපාර සඳහා Software Solutions",
+      "en": "20Scale | Software Solutions for Businesses"
+    },
+    "defaultDescription": {
+      "si": "POS පද්ධති, inventory management සහ custom software solutions.",
+      "en": "POS systems, inventory management and custom software solutions for businesses."
+    },
+    "keywords": {
+      "si": [
+        "POS පද්ධති ශ්‍රී ලංකාව",
+        "POS මිල",
+        "ව්‍යාපාර කළමනාකරණ මෘදුකාංග",
+        "custom software"
+      ],
+      "en": [
+        "POS system Sri Lanka",
+        "POS pricing Sri Lanka",
+        "inventory software Sri Lanka",
+        "custom software Sri Lanka"
+      ]
+    },
+    "generateSitemap": true,
+    "generateRobotsTxt": true,
+    "canonicalDomain": null,
+    "openGraphImage": null
+  },
+  "accessibility": {
+    "keyboardNavigation": true,
+    "semanticHTML": true,
+    "imageAltText": true,
+    "goodColorContrast": true,
+    "reducedMotion": true,
+    "responsiveTypography": true
+  },
+  "performance": {
+    "imageFormats": [
+      "WebP",
+      "AVIF"
+    ],
+    "minimiseJavaScript": true,
+    "optimiseFonts": true,
+    "lazyLoadImages": true,
+    "mobileFirst": true
+  },
+  "futureFeatures": [
+    "Interactive pricing calculator",
+    "Quote request form",
+    "Google Sheets integration",
+    "Email notifications",
+    "WhatsApp contact integration",
+    "Hardware vendor catalogue",
+    "Client testimonials",
+    "Case studies",
+    "Founder profiles",
+    "Chatbot",
+    "Analytics",
+    "Custom domain"
+  ]
+}

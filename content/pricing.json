@@ -1,6 +1,9 @@
+
 {
   "_meta": {
-    "note": "Structure follows the reference (possystem.lk/pricing) but ALL NUMBERS ARE OWNER'S TO FILL. Do not copy any competitor price. If a price is null, show 'Get your quote' instead of a number."
+    "note": "Pricing is in LKR. Suggested starting rates for the Sri Lankan market as of November 2026. These are our proposed prices, not copied competitor prices. Owner must approve all rates before publishing.",
+    "pricingStatus": "proposed_pending_owner_approval",
+    "nullPriceBehavior": "If a price is null, show 'Get your quote' instead of a number."
   },
   "principles": [
     {
@@ -27,7 +30,7 @@
         "en": "Desktop",
         "si": "Desktop"
       },
-      "price": null,
+      "price": 70000,
       "currency": "LKR",
       "billing": "one-time",
       "recurring": null,
@@ -38,12 +41,12 @@
           "si": "සම්පූර්ණයෙන් offline වැඩ කරයි"
         },
         {
-          "en": "100% customised to your business",
-          "si": "ඔබේ ව්‍යාපාරයට 100% custom"
+          "en": "Customised to your business requirements",
+          "si": "ඔබේ ව්‍යාපාරයේ අවශ්‍යතාවලට ගැළපෙන ලෙස සකස් කරයි"
         },
         {
-          "en": "Free user manual, training and counselling",
-          "si": "නොමිලේ user manual, training සහ උපදේශනය"
+          "en": "Free user manual and basic remote training",
+          "si": "නොමිලේ user manual සහ මූලික remote training"
         }
       ]
     },
@@ -53,12 +56,12 @@
         "en": "Cloud",
         "si": "Cloud"
       },
-      "price": null,
+      "price": 60000,
       "currency": "LKR",
       "billing": "one-time",
       "recurring": {
         "label": "Yearly hosting",
-        "amount": null,
+        "amount": 18000,
         "period": "year"
       },
       "badge": null,
@@ -83,12 +86,12 @@
         "en": "Hybrid (Desktop + Cloud)",
         "si": "Hybrid (Desktop + Cloud)"
       },
-      "price": null,
+      "price": 90000,
       "currency": "LKR",
       "billing": "one-time",
       "recurring": {
         "label": "Yearly hosting",
-        "amount": null,
+        "amount": 18000,
         "period": "year"
       },
       "badge": null,
@@ -119,7 +122,7 @@
     ]
   },
   "founderOffer": {
-    "active": true,
+    "active": false,
     "slots": 20,
     "claimed": null,
     "benefits": [
@@ -132,7 +135,7 @@
         "si": "වසර 5ක නොමිලේ support"
       }
     ],
-    "needsConfirmation": "Owner said both 'lifetime warranty' (Q9) and '5-year free support, no lifetime support' (Q30). Confirm exact wording before launch. Remove this offer after 20 clients.",
+    "needsConfirmation": "Owner said both 'lifetime warranty' (Q9) and '5-year free support, no lifetime support' (Q30). Confirm exact wording and what is included before activating this offer. Confirm how many of the 20 slots have already been claimed. Remove this offer after 20 clients.",
     "showRemainingSlots": false
   },
   "paymentMethods": [
@@ -150,7 +153,7 @@
     "si": "මුදල් ආපසු ගෙවීමක් නැත. වැරදීමකින් වැඩිපුර ගෙවූ මුදල පමණක් (වැඩිපුර ගෙවූ කොටස පමණක්) ආපසු ගෙවනු ලැබේ."
   },
   "calculator": {
-    "reference": "https://possystem.lk/pos-system-price-calculator (structure only)",
+    "reference": "https://possystem.lk/pos-system-price-calculator",
     "steps": [
       "your_details",
       "business_type_and_scale",
@@ -192,27 +195,27 @@
         "hybrid",
         "not_sure"
       ],
-      "hardware": "list from hardware.json, quantity per item, or 'I already have hardware'",
+      "hardware": "List from hardware.json, quantity per item, or 'I already have hardware'",
       "extras": [
         "dataEntryDays",
         "onSiteTraining",
         "transportKm"
       ]
     },
-    "formula": "total = base(package, businessType) + (stations-1)*perExtraStation + branches*perExtraBranch + hostingFirstYear(if cloud/hybrid) + sum(hardware vendor prices) + dataEntryDays*dailyRate + installTraining + transport - discount",
+    "formula": "total = base(package, businessType) + (stations-1)*perExtraStation + branches*perExtraBranch + hostingFirstYear(if cloud/hybrid) + sum(hardware vendor prices) + dataEntryDays*dailyRate + installTraining(if requested) + transportKm*transportPerKm - discount",
     "rates": {
       "base": {
-        "desktop": null,
-        "cloud": null,
-        "hybrid": null
+        "desktop": 70000,
+        "cloud": 60000,
+        "hybrid": 90000
       },
-      "businessTypeAdjustment": null,
-      "perExtraStation": null,
-      "perExtraBranch": null,
-      "hostingPerYear": null,
-      "dataEntryPerPersonPerDay": null,
-      "installTraining": null,
-      "transportPerKm": null
+      "businessTypeAdjustment": 0,
+      "perExtraStation": 10000,
+      "perExtraBranch": 15000,
+      "hostingPerYear": 18000,
+      "dataEntryPerPersonPerDay": 5000,
+      "installTraining": 7500,
+      "transportPerKm": 100
     },
     "devSampleRates_NOT_REAL": {
       "note": "ONLY for building/testing the UI. Never display on a live site.",
@@ -237,7 +240,7 @@
           "en": "Download quote (PDF)",
           "si": "මිල ගණන් (PDF) බාගන්න"
         },
-        "method": "browser print-to-PDF styled quote, client-side, no server"
+        "method": "Browser print-to-PDF styled quote, client-side, no server"
       },
       {
         "id": "place_order_request",
@@ -245,7 +248,7 @@
           "en": "Place order request",
           "si": "ඇණවුම් ඉල්ලීම යවන්න"
         },
-        "method": "cart-style summary -> submit -> Google Sheet + email. No payment taken online; team confirms and sends bank details."
+        "method": "Cart-style summary -> submit -> Google Sheet + email. No payment taken online; team confirms and sends bank details."
       },
       {
         "id": "custom_requirement",
@@ -253,7 +256,7 @@
           "en": "Describe your own requirement",
           "si": "ඔබේ අවශ්‍යතාව ඔබම ලියන්න"
         },
-        "method": "free-text textarea + contact details -> Google Sheet + email"
+        "method": "Free-text textarea + contact details -> Google Sheet + email"
       },
       {
         "id": "consult_team",
@@ -261,8 +264,77 @@
           "en": "Let our team advise me",
           "si": "අපේ කණ්ඩායමෙන් උපදෙස් ගන්න"
         },
-        "method": "short form or WhatsApp deep link with prefilled message"
+        "method": "Short form or WhatsApp deep link with prefilled message"
       }
+    ]
+  },
+  "blockingItems": [
+    {
+      "id": "pricing_approval",
+      "title": "Pricing numbers",
+      "status": "proposed_pending_owner_approval",
+      "details": "Approve base prices for Desktop, Cloud and Hybrid, extra station, extra branch, yearly hosting, data-entry rate, installation and training, and transport. Current values are proposed starting rates, not final approved prices."
+    },
+    {
+      "id": "founder_offer",
+      "title": "Founder offer wording",
+      "status": "needs_confirmation",
+      "details": "Resolve the difference between 'Lifetime software warranty' (Q9) and '5-year free support, no lifetime support' (Q30). Confirm how many of the 20 slots have already been claimed."
+    },
+    {
+      "id": "founders",
+      "title": "Founders",
+      "status": "pending",
+      "details": "Add the 4 founders' names, roles, photos and optional bios / LinkedIn links."
+    },
+    {
+      "id": "hardware_vendors",
+      "title": "Hardware vendors",
+      "status": "pending",
+      "details": "Add hardware vendor names, contact details and verified real prices. Confirm whether the company adds any margin. Hardware prices must not be invented."
+    },
+    {
+      "id": "payment_schedule",
+      "title": "Payment schedule",
+      "status": "pending",
+      "details": "Confirm advance percentage, payment milestones or pay-after-completion terms. Bank details should only be shared after an order is confirmed."
+    },
+    {
+      "id": "handover",
+      "title": "Handover policy",
+      "status": "pending",
+      "details": "Confirm whether full handover includes source code and repository access, or only the running system, database and client data."
+    },
+    {
+      "id": "hosting",
+      "title": "Hosting provider",
+      "status": "pending",
+      "details": "Verify commercial-use terms, limitations and suitability before choosing a hosting provider. Vercel Hobby may not be suitable for commercial use; evaluate Cloudflare Pages and other suitable hosting options."
+    },
+    {
+      "id": "google_apps_script",
+      "title": "Google Apps Script integration",
+      "status": "pending",
+      "details": "Create and configure Google Apps Script, Google Sheet storage and email notifications for quote requests, order requests and custom requirements."
+    },
+    {
+      "id": "package_scope",
+      "title": "Package scope and feature limits",
+      "status": "pending",
+      "details": "Define exactly what is included in each package, including users, cashier stations, branches, customisation limits, backups, updates and support. Avoid promising unlimited custom development under a fixed base price."
+    }
+  ],
+  "pricingNotes": {
+    "marketChecked": "November 2026",
+    "currency": "LKR",
+    "status": "Internal planning reference. Not a public competitor comparison.",
+    "notes": [
+      "Desktop, Cloud and Hybrid prices are proposed starting prices for owner approval.",
+      "Yearly hosting is charged separately for Cloud and Hybrid packages.",
+      "Hardware is excluded from software package prices and must use verified vendor prices.",
+      "Transport is estimated using the entered distance. Confirm whether the calculator should use one-way or round-trip distance.",
+      "Business type adjustment is currently zero. Review after collecting real project data.",
+      "Custom requirements outside the agreed package scope need a separate quotation."
     ]
   }
 }

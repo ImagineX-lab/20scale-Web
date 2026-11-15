@@ -1,0 +1,67 @@
+{
+  "logo": {
+    "file": "assets/logo-original.png",
+    "size": "2000x2000",
+    "description": "Wordmark: large '20' (the '2' muted teal, the '0' bright cyan, overlapping) above lowercase 'scale' in muted teal. Placed on near-black navy.",
+    "todo": "Request a transparent-background SVG/PNG, a horizontal lockup and a square icon (favicon) version. Current file has the dark background baked in."
+  },
+  "colors": {
+    "background": "#00030B",
+    "surface": "#07101C",
+    "surfaceAlt": "#0B1726",
+    "border": "#12283A",
+    "primary": "#00E5E5",
+    "primaryMuted": "#027887",
+    "primaryGlow": "rgba(0,229,229,0.25)",
+    "text": "#EAF6F8",
+    "textMuted": "#8FA9B3",
+    "success": "#3DDC97",
+    "warning": "#FFB84D",
+    "danger": "#FF5C6C",
+    "note": "background/primaryMuted sampled from logo; primary (cyan) estimated from the '0'. Confirm exact hex with the designer file."
+  },
+  "theme": {
+    "mode": "dark-only",
+    "style": "rich, majestic, minimal. Subtle cyan glow, thin borders, soft gradients, generous spacing. No clutter."
+  },
+  "typography": {
+    "latinHeading": "Manrope or Outfit (geometric, wide, bold -- matches logo)",
+    "latinBody": "Inter",
+    "sinhala": "Noto Sans Sinhala (fallback: Iskoola Pota, system-ui)",
+    "rule": "Sinhala needs larger line-height (1.7+) than English. Never use letter-spacing on Sinhala text."
+  },
+  "tone": {
+    "voice": [
+      "professional",
+      "friendly",
+      "bold"
+    ],
+    "rules": [
+      "Plain, honest language. Short sentences.",
+      "Sinhala is primary: write natural spoken-professional Sinhala, mixed with English tech terms where Sri Lankan business owners use them (POS, stock, backup).",
+      "Never disparage competitors by name. Show transparency instead of attacking others.",
+      "Never claim what is not verified (see company.deliveredProjects)."
+    ]
+  },
+  "motion": {
+    "style": "simple, subtle motion graphics that support the message, never distract",
+    "allowed": [
+      "fade/slide-up on scroll (<=400ms)",
+      "soft glow pulse on primary CTA",
+      "animated flow line for the 'process' section",
+      "count-up only for real numbers"
+    ],
+    "forbidden": [
+      "parallax heavy effects",
+      "auto-playing loud video",
+      "long intro animations"
+    ],
+    "accessibility": "Respect prefers-reduced-motion: disable all animation."
+  },
+  "ui": {
+    "radius": "16px cards, 999px pills",
+    "buttons": "Primary = cyan fill, dark text. Secondary = outline.",
+    "mobileFirst": true,
+    "note": "mobile-first assumed (most Sri Lankan visitors use phones) -- owner had no data."
+  }
+}

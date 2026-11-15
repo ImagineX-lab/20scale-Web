@@ -1,0 +1,219 @@
+{
+  "process": [
+    {
+      "step": 1,
+      "id": "contact",
+      "title": {
+        "en": "Free counselling call",
+        "si": "නොමිලේ උපදේශන ඇමතුම"
+      },
+      "text": {
+        "en": "Tell us about your business. We explain what can be built -- free.",
+        "si": "ඔබේ ව්‍යාපාරය ගැන කියන්න. නිර්මාණය කළ හැක්කේ කුමක්දැයි අපි නොමිලේ පැහැදිලි කරමු."
+      }
+    },
+    {
+      "step": 2,
+      "id": "site-visit",
+      "title": {
+        "en": "We visit your business",
+        "si": "අපි ඔබේ ව්‍යාපාරයට පැමිණෙමු"
+      },
+      "text": {
+        "en": "We study how your business really runs before proposing anything.",
+        "si": "යමක් යෝජනා කිරීමට පෙර ඔබේ ව්‍යාපාරය සැබවින්ම වැඩ කරන ආකාරය අපි අධ්‍යයනය කරමු."
+      }
+    },
+    {
+      "step": 3,
+      "id": "proposal",
+      "title": {
+        "en": "Clear solution & price",
+        "si": "පැහැදිලි විසඳුම සහ මිල"
+      },
+      "text": {
+        "en": "One price, with a full breakdown of how it is formed.",
+        "si": "එකම මිලක්, එය හැදෙන ආකාරයේ සම්පූර්ණ විස්තරයක් සමඟ."
+      }
+    },
+    {
+      "step": 4,
+      "id": "build",
+      "title": {
+        "en": "Built with regular updates",
+        "si": "නිතර යාවත්කාලීන කරමින් නිර්මාණය"
+      },
+      "text": {
+        "en": "You see progress regularly and can suggest changes early.",
+        "si": "ඔබට ප්‍රගතිය නිතර දැකිය හැකි අතර වෙනස්කම් කල්ඉක්මනින් යෝජනා කළ හැක."
+      }
+    },
+    {
+      "step": 5,
+      "id": "install",
+      "title": {
+        "en": "Install, data setup & training",
+        "si": "Install කිරීම, data සැකසීම සහ training"
+      },
+      "text": {
+        "en": "We come to you, set everything up and teach your staff from scratch. Training is free.",
+        "si": "අපි ඔබ වෙත පැමිණ සියල්ල සකසා ඔබේ කාර්ය මණ්ඩලයට මුල සිට උගන්වමු. Training නොමිලේ."
+      }
+    },
+    {
+      "step": 6,
+      "id": "handover",
+      "title": {
+        "en": "Full handover",
+        "si": "සම්පූර්ණ භාරදීම"
+      },
+      "text": {
+        "en": "After payment the system is fully yours, with a free user manual.",
+        "si": "ගෙවීමෙන් පසු පද්ධතිය සම්පූර්ණයෙන්ම ඔබටය; නොමිලේ user manual සමඟ."
+      }
+    }
+  ],
+  "deliveryTime": {
+    "basicPos": {
+      "en": "About 1 month or less",
+      "si": "මාසයක් පමණ හෝ ඊට අඩුවෙන්"
+    },
+    "complexSystem": {
+      "en": "More than 1 month, depending on scope",
+      "si": "විෂය පථය අනුව මාසයකට වැඩි"
+    },
+    "note": "Do not promise '24 hours' or 'zero setup time'."
+  },
+  "dataMigration": {
+    "digitalData": {
+      "en": "If your data is already digital, we can migrate it (may take time).",
+      "si": "ඔබේ data දැනටමත් digital නම් අපට migrate කළ හැක (කාලයක් ගත විය හැක)."
+    },
+    "paperRecords": {
+      "en": "If records are in books, our team enters the data in person. 1+ people per day, billed to the client.",
+      "si": "වාර්තා පොත්වල නම්, අපේ කණ්ඩායම පැමිණ data ඇතුළත් කරයි. දිනකට පුද්ගලයන් එක් අයෙක්+; ගාස්තුව client විසින් දරයි."
+    },
+    "pricing": "dataEntryPerPersonPerDay in pricing.json"
+  },
+  "freeIncluded": [
+    {
+      "en": "User manual",
+      "si": "User manual"
+    },
+    {
+      "en": "Training (in person)",
+      "si": "Training (පුද්ගලිකව)"
+    },
+    {
+      "en": "Counselling / consultation",
+      "si": "උපදේශනය"
+    },
+    {
+      "en": "Regular development progress updates",
+      "si": "සංවර්ධන ප්‍රගති යාවත්කාලීන"
+    }
+  ],
+  "handover": {
+    "text": {
+      "en": "Once payment is complete the system is handed over fully; no further charges for the software itself.",
+      "si": "ගෙවීම සම්පූර්ණ වූ පසු පද්ධතිය සම්පූර්ණයෙන්ම භාරදෙයි; software එකටම තවත් ගෙවීම් නැත."
+    },
+    "exceptions": "Cloud/Hybrid yearly hosting still applies.",
+    "sourceCodeIncluded": null
+  },
+  "support": {
+    "freeSupportPeriod": {
+      "firstClients": {
+        "clients": 20,
+        "years": 5
+      },
+      "others": null,
+      "needsConfirmation": true
+    },
+    "languages": [
+      "si",
+      "en"
+    ],
+    "tamil": false,
+    "channels": [
+      {
+        "id": "whatsapp",
+        "name": {
+          "en": "Dedicated WhatsApp Business support (send screenshots/videos easily)",
+          "si": "විශේෂ WhatsApp Business support (screenshots/videos ලේසියෙන් යවන්න)"
+        }
+      },
+      {
+        "id": "hotline",
+        "name": {
+          "en": "Direct hotline for emergencies",
+          "si": "හදිසි අවස්ථා සඳහා සෘජු දුරකථන hotline"
+        }
+      },
+      {
+        "id": "remote",
+        "name": {
+          "en": "Remote desktop support (e.g. AnyDesk)",
+          "si": "Remote desktop support (උදා: AnyDesk)"
+        }
+      },
+      {
+        "id": "onsite",
+        "name": {
+          "en": "On-site visits when really needed (Kurunegala / Kegalle area; transport fee may apply)",
+          "si": "අවශ්‍යම විටක on-site පැමිණීම (කුරුණෑගල / කෑගල්ල අවට; transport ගාස්තුවක් අදාළ විය හැක)"
+        }
+      }
+    ]
+  },
+  "sla": {
+    "criticalIssueResponse": {
+      "en": "For a critical failure, one of our engineers connects remotely within 30 minutes and works to resolve it.",
+      "si": "බරපතළ ගැටලුවක් ඇති වූ විට විනාඩි 30ක් ඇතුළත අපේ ඉංජිනේරුවෙක් remote සම්බන්ධ වී විසඳීමට කටයුතු කරයි."
+    },
+    "definitionOfCritical": null,
+    "needsConfirmation": "Define 'critical' (e.g. billing stopped / system down) in the Terms so the 30-minute promise is clear and achievable."
+  },
+  "warranty": {
+    "bugFixes": {
+      "en": "Software bugs are fixed free of charge under warranty.",
+      "si": "Software bugs වරප්‍රසාද (warranty) යටතේ නොමිලේ නිවැරදි කරනු ලැබේ."
+    },
+    "lifetimeForFirstClients": true,
+    "needsConfirmation": true
+  },
+  "exclusions": {
+    "title": {
+      "en": "Not covered by free support",
+      "si": "නොමිලේ support එකට අයිති නොවන දේ"
+    },
+    "mustAppearIn": [
+      "Terms page",
+      "Quote PDF footer",
+      "Support page"
+    ],
+    "items": [
+      {
+        "id": "hardwareFailures",
+        "text": {
+          "en": "Hardware failures: a broken PC, Windows/virus issues, or printer/scanner hardware faults must be repaired by the hardware vendor. We help reinstall software drivers.",
+          "si": "Hardware දෝෂ: PC එක කැඩීම, Windows/virus ගැටලු, හෝ printer/scanner hardware දෝෂ hardware vendor ගෙන් නිවැරදි කරගත යුතුය. Software drivers නැවත install කිරීමට අපි උදව් කරමු."
+        }
+      },
+      {
+        "id": "userDataLoss",
+        "text": {
+          "en": "Data loss due to user negligence: even with auto-backup, if the client formats the drive or damages the PC.",
+          "si": "පරිශීලක නොසැලකිල්ල නිසා data අහිමි වීම: auto-backup තිබුණද, client විසින්ම drive එක format කිරීම හෝ PC එක විනාශ කිරීම."
+        }
+      },
+      {
+        "id": "newFeatures",
+        "text": {
+          "en": "New custom features outside the originally agreed scope are quoted separately.",
+          "si": "මුලින් එකඟ වූ විෂය පථයෙන් පිටත අලුත් custom features වෙනම quotation එකකින් ඉදිරිපත් කරනු ලැබේ."
+        }
+      }
+    ]
+  }
+}

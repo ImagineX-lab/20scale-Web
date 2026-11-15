@@ -1,0 +1,268 @@
+{
+  "_meta": {
+    "note": "Structure follows the reference (possystem.lk/pricing) but ALL NUMBERS ARE OWNER'S TO FILL. Do not copy any competitor price. If a price is null, show 'Get your quote' instead of a number."
+  },
+  "principles": [
+    {
+      "en": "You see one total price and exactly how it is built.",
+      "si": "ඔබට පෙනෙන්නේ එකම මුළු මිලක් සහ එය හැදෙන ආකාරයයි."
+    },
+    {
+      "en": "No hidden monthly fees or surprise service charges.",
+      "si": "සැඟවුණු මාසික ගාස්තු හෝ අමතර service charges නැත."
+    },
+    {
+      "en": "Hardware is priced at the vendor's real price -- you are connected to the vendor directly.",
+      "si": "Hardware මිල vendor ගේ සැබෑ මිලමයි -- vendor ව ඔබට කෙලින්ම සම්බන්ධ කරනු ලැබේ."
+    },
+    {
+      "en": "After full payment the system is handed over completely to you.",
+      "si": "සම්පූර්ණ ගෙවීමෙන් පසු පද්ධතිය සම්පූර්ණයෙන්ම ඔබට භාරදෙනු ලැබේ."
+    }
+  ],
+  "packages": [
+    {
+      "id": "desktop",
+      "name": {
+        "en": "Desktop",
+        "si": "Desktop"
+      },
+      "price": null,
+      "currency": "LKR",
+      "billing": "one-time",
+      "recurring": null,
+      "badge": null,
+      "bullets": [
+        {
+          "en": "Works 100% offline",
+          "si": "සම්පූර්ණයෙන් offline වැඩ කරයි"
+        },
+        {
+          "en": "100% customised to your business",
+          "si": "ඔබේ ව්‍යාපාරයට 100% custom"
+        },
+        {
+          "en": "Free user manual, training and counselling",
+          "si": "නොමිලේ user manual, training සහ උපදේශනය"
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "name": {
+        "en": "Cloud",
+        "si": "Cloud"
+      },
+      "price": null,
+      "currency": "LKR",
+      "billing": "one-time",
+      "recurring": {
+        "label": "Yearly hosting",
+        "amount": null,
+        "period": "year"
+      },
+      "badge": null,
+      "bullets": [
+        {
+          "en": "Access from anywhere",
+          "si": "ඕනෑම තැනක සිට භාවිතා කළ හැක"
+        },
+        {
+          "en": "Multi-branch ready",
+          "si": "බහු-ශාඛා සඳහා සූදානම්"
+        },
+        {
+          "en": "Mobile dashboard",
+          "si": "Mobile dashboard"
+        }
+      ]
+    },
+    {
+      "id": "hybrid",
+      "name": {
+        "en": "Hybrid (Desktop + Cloud)",
+        "si": "Hybrid (Desktop + Cloud)"
+      },
+      "price": null,
+      "currency": "LKR",
+      "billing": "one-time",
+      "recurring": {
+        "label": "Yearly hosting",
+        "amount": null,
+        "period": "year"
+      },
+      "badge": null,
+      "bullets": [
+        {
+          "en": "Offline locally, syncs when online",
+          "si": "දේශීයව offline, online වූ විට sync"
+        },
+        {
+          "en": "Best of both",
+          "si": "දෙකේම හොඳම දේ"
+        }
+      ]
+    }
+  ],
+  "priceBreakdownTemplate": {
+    "description": "Every quote shows these line items so the client sees how the total is formed.",
+    "lines": [
+      "software_development",
+      "extra_cashier_stations",
+      "extra_branches",
+      "hosting_first_year",
+      "hardware_at_vendor_price",
+      "data_entry_or_migration",
+      "installation_and_training",
+      "onsite_transport",
+      "discount_offer"
+    ]
+  },
+  "founderOffer": {
+    "active": true,
+    "slots": 20,
+    "claimed": null,
+    "benefits": [
+      {
+        "en": "Lifetime software warranty (bug fixes free)",
+        "si": "Software එකට lifetime warranty (bug fixes නොමිලේ)"
+      },
+      {
+        "en": "5 years free support",
+        "si": "වසර 5ක නොමිලේ support"
+      }
+    ],
+    "needsConfirmation": "Owner said both 'lifetime warranty' (Q9) and '5-year free support, no lifetime support' (Q30). Confirm exact wording before launch. Remove this offer after 20 clients.",
+    "showRemainingSlots": false
+  },
+  "paymentMethods": [
+    "Bank transfer"
+  ],
+  "onlinePayments": false,
+  "paymentSchedule": null,
+  "installments": null,
+  "discounts": {
+    "bulk": null,
+    "note": "No standing promotions. Case-by-case per client."
+  },
+  "refund": {
+    "en": "No refunds. Only an overpayment made by mistake is refunded (the excess amount only).",
+    "si": "මුදල් ආපසු ගෙවීමක් නැත. වැරදීමකින් වැඩිපුර ගෙවූ මුදල පමණක් (වැඩිපුර ගෙවූ කොටස පමණක්) ආපසු ගෙවනු ලැබේ."
+  },
+  "calculator": {
+    "reference": "https://possystem.lk/pos-system-price-calculator (structure only)",
+    "steps": [
+      "your_details",
+      "business_type_and_scale",
+      "hardware (optional / already have)",
+      "software_package",
+      "extras",
+      "quote_summary"
+    ],
+    "inputs": {
+      "details": [
+        "fullName*",
+        "phone*",
+        "businessName",
+        "email",
+        "cityDistrict",
+        "businessType"
+      ],
+      "businessTypes": [
+        "Retail / Grocery",
+        "Hardware / Building materials",
+        "Auto spare parts",
+        "Restaurant / Cafe",
+        "Pharmacy",
+        "Clothing",
+        "Distributor",
+        "Other"
+      ],
+      "cashierStations": {
+        "min": 1,
+        "default": 1
+      },
+      "additionalBranches": {
+        "min": 0,
+        "default": 0
+      },
+      "package": [
+        "desktop",
+        "cloud",
+        "hybrid",
+        "not_sure"
+      ],
+      "hardware": "list from hardware.json, quantity per item, or 'I already have hardware'",
+      "extras": [
+        "dataEntryDays",
+        "onSiteTraining",
+        "transportKm"
+      ]
+    },
+    "formula": "total = base(package, businessType) + (stations-1)*perExtraStation + branches*perExtraBranch + hostingFirstYear(if cloud/hybrid) + sum(hardware vendor prices) + dataEntryDays*dailyRate + installTraining + transport - discount",
+    "rates": {
+      "base": {
+        "desktop": null,
+        "cloud": null,
+        "hybrid": null
+      },
+      "businessTypeAdjustment": null,
+      "perExtraStation": null,
+      "perExtraBranch": null,
+      "hostingPerYear": null,
+      "dataEntryPerPersonPerDay": null,
+      "installTraining": null,
+      "transportPerKm": null
+    },
+    "devSampleRates_NOT_REAL": {
+      "note": "ONLY for building/testing the UI. Never display on a live site.",
+      "base": {
+        "desktop": 100000,
+        "cloud": 80000,
+        "hybrid": 150000
+      },
+      "perExtraStation": 10000,
+      "perExtraBranch": 10000,
+      "hostingPerYear": 15000,
+      "dataEntryPerPersonPerDay": 5000
+    },
+    "disclaimer": {
+      "en": "This is an estimate. The final price is confirmed after we study your business.",
+      "si": "මෙය ඇස්තමේන්තුවකි. ඔබේ ව්‍යාපාරය අධ්‍යයනය කළ පසු අවසාන මිල තහවුරු කරනු ලැබේ."
+    },
+    "outputs": [
+      {
+        "id": "download_quote",
+        "label": {
+          "en": "Download quote (PDF)",
+          "si": "මිල ගණන් (PDF) බාගන්න"
+        },
+        "method": "browser print-to-PDF styled quote, client-side, no server"
+      },
+      {
+        "id": "place_order_request",
+        "label": {
+          "en": "Place order request",
+          "si": "ඇණවුම් ඉල්ලීම යවන්න"
+        },
+        "method": "cart-style summary -> submit -> Google Sheet + email. No payment taken online; team confirms and sends bank details."
+      },
+      {
+        "id": "custom_requirement",
+        "label": {
+          "en": "Describe your own requirement",
+          "si": "ඔබේ අවශ්‍යතාව ඔබම ලියන්න"
+        },
+        "method": "free-text textarea + contact details -> Google Sheet + email"
+      },
+      {
+        "id": "consult_team",
+        "label": {
+          "en": "Let our team advise me",
+          "si": "අපේ කණ්ඩායමෙන් උපදෙස් ගන්න"
+        },
+        "method": "short form or WhatsApp deep link with prefilled message"
+      }
+    ]
+  }
+}

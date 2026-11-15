@@ -1,0 +1,293 @@
+{
+  "_meta": {
+    "type": "rule-based decision tree (predefined questions, no AI call, no cost, no user typing). Do NOT label it 'AI' on the site.",
+    "actions": {
+      "open_calculator": "/pricing#calculator",
+      "whatsapp": "company.contact.whatsapp.link",
+      "email": "company.contact.email",
+      "faq": "/faq"
+    }
+  },
+  "start": "root",
+  "nodes": [
+    {
+      "id": "root",
+      "message": {
+        "en": "Hi! I'm the 20Scale assistant. What would you like to know?",
+        "si": "ආයුබෝවන්! මම 20Scale සහායකයා. ඔබට දැනගන්න ඕන මොනවාද?"
+      },
+      "options": [
+        {
+          "label": {
+            "en": "What can you build?",
+            "si": "ඔබ මොනවද හදන්නේ?"
+          },
+          "next": "services"
+        },
+        {
+          "label": {
+            "en": "How does pricing work?",
+            "si": "මිල ගණන් වැඩ කරන්නේ කොහොමද?"
+          },
+          "next": "pricing"
+        },
+        {
+          "label": {
+            "en": "Hardware",
+            "si": "Hardware"
+          },
+          "next": "hardware"
+        },
+        {
+          "label": {
+            "en": "Support & warranty",
+            "si": "Support සහ warranty"
+          },
+          "next": "support"
+        },
+        {
+          "label": {
+            "en": "How do we start?",
+            "si": "පටන් ගන්නේ කොහොමද?"
+          },
+          "next": "start"
+        },
+        {
+          "label": {
+            "en": "Get a quote",
+            "si": "මිල ගණන් ගන්න"
+          },
+          "action": "open_calculator"
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "message": {
+        "en": "We build 100% custom software: POS, inventory, ERP, HR, web and mobile apps. Which sounds closest to you?",
+        "si": "අපි 100% custom මෘදුකාංග නිර්මාණය කරමු: POS, තොග, ERP, HR, web සහ mobile apps. ඔබට වඩාත් ගැළපෙන්නේ කුමක්ද?"
+      },
+      "options": [
+        {
+          "label": {
+            "en": "POS / billing",
+            "si": "POS / බිල්පත්"
+          },
+          "next": "pos"
+        },
+        {
+          "label": {
+            "en": "Something else",
+            "si": "වෙනත් දෙයක්"
+          },
+          "next": "custom"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "pos",
+      "message": {
+        "en": "Our POS systems are offline-first and built around your shop's real workflow. Want a price estimate?",
+        "si": "අපේ POS පද්ධති offline-first වන අතර ඔබේ වෙළඳසැලේ සැබෑ වැඩ පිළිවෙළට නිර්මාණය කෙරේ. මිල ඇස්තමේන්තුවක් ඕනද?"
+      },
+      "options": [
+        {
+          "label": {
+            "en": "Open price calculator",
+            "si": "මිල ගණක යන්ත්‍රය විවෘත කරන්න"
+          },
+          "action": "open_calculator"
+        },
+        {
+          "label": {
+            "en": "Talk to the team",
+            "si": "කණ්ඩායම සමඟ කතා කරන්න"
+          },
+          "action": "whatsapp"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "custom",
+      "message": {
+        "en": "Tell us your problem and we design the solution. Our team will advise you for free.",
+        "si": "ඔබේ ගැටලුව කියන්න, විසඳුම අපි නිර්මාණය කරමු. අපේ කණ්ඩායම නොමිලේ උපදෙස් දෙයි."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "Chat on WhatsApp",
+            "si": "WhatsApp හරහා කතා කරන්න"
+          },
+          "action": "whatsapp"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "message": {
+        "en": "We give one total price and show exactly how it is built. No hidden monthly fees. Hosting applies only to Cloud/Hybrid.",
+        "si": "අපි එකම මුළු මිලක් දී එය හැදෙන ආකාරය පෙන්වමු. සැඟවුණු මාසික ගාස්තු නැත. Hosting අදාළ වන්නේ Cloud/Hybrid වලට පමණි."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "Open price calculator",
+            "si": "මිල ගණක යන්ත්‍රය විවෘත කරන්න"
+          },
+          "action": "open_calculator"
+        },
+        {
+          "label": {
+            "en": "Do you give refunds?",
+            "si": "මුදල් ආපසු ලැබෙනවද?"
+          },
+          "next": "refund"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "refund",
+      "message": {
+        "en": "No refunds, except an amount overpaid by mistake.",
+        "si": "මුදල් ආපසු ගෙවීමක් නැත; වැරදීමකින් වැඩිපුර ගෙවූ මුදල පමණක් ආපසු ගෙවනු ලැබේ."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "pricing"
+        },
+        {
+          "label": {
+            "en": "Main menu",
+            "si": "ප්‍රධාන මෙනුව"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "hardware",
+      "message": {
+        "en": "We recommend the right hardware and connect you directly to the vendor at the real price.",
+        "si": "නිවැරදි hardware නිර්දේශ කර සැබෑ මිලට vendor ව කෙලින්ම ඔබට සම්බන්ධ කරමු."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "See hardware list",
+            "si": "Hardware ලැයිස්තුව බලන්න"
+          },
+          "action": "open_calculator"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "message": {
+        "en": "WhatsApp Business, hotline, remote desktop and on-site visits. Critical issue: remote response within 30 minutes.",
+        "si": "WhatsApp Business, hotline, remote desktop සහ on-site පැමිණීම. බරපතළ ගැටලුවක් නම් විනාඩි 30ක් ඇතුළත remote ප්‍රතිචාර."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "What is not covered?",
+            "si": "මොනවාද ඇතුළත් නොවන්නේ?"
+          },
+          "next": "exclusions"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "exclusions",
+      "message": {
+        "en": "Not covered by free support: hardware failures, data loss from user negligence, and new features outside the agreed scope.",
+        "si": "නොමිලේ support එකට ඇතුළත් නොවන්නේ: hardware දෝෂ, පරිශීලක නොසැලකිල්ලෙන් data අහිමි වීම, සහ එකඟ වූ විෂය පථයෙන් පිටත අලුත් features."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "support"
+        },
+        {
+          "label": {
+            "en": "Main menu",
+            "si": "ප්‍රධාන මෙනුව"
+          },
+          "next": "root"
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "message": {
+        "en": "1) Free call  2) We visit your business  3) Clear price  4) Build with updates  5) Install & train  6) Full handover.",
+        "si": "1) නොමිලේ ඇමතුමක්  2) අපි ඔබේ ව්‍යාපාරයට පැමිණෙමු  3) පැහැදිලි මිල  4) යාවත්කාලීන සමඟ නිර්මාණය  5) Install සහ training  6) සම්පූර්ණ භාරදීම."
+      },
+      "options": [
+        {
+          "label": {
+            "en": "Talk to the team",
+            "si": "කණ්ඩායම සමඟ කතා කරන්න"
+          },
+          "action": "whatsapp"
+        },
+        {
+          "label": {
+            "en": "Back",
+            "si": "ආපසු"
+          },
+          "next": "root"
+        }
+      ]
+    }
+  ]
+}

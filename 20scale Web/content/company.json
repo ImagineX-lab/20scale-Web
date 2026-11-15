@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "note": "Single source of truth. null = not decided yet -> UI must hide that element, never invent a value.",
+    "version": "0.1",
+    "updated": "2026-11-15"
+  },
+  "name": {
+    "legal": null,
+    "display": "20Scale Solutions",
+    "short": "20Scale"
+  },
+  "tagline": {
+    "en": "Enterprise Software. Built to Scale.",
+    "si": "Enterprise මෘදුකාංග. ව්‍යාපාරය ඉදිරියට ගෙනයාමට නිර්මිතයි."
+  },
+  "founded": {
+    "year": 2026,
+    "month": 6
+  },
+  "registration": {
+    "registered": false,
+    "regNo": null,
+    "rule": "Do not show '(Pvt) Ltd', registration number, or 'registered company' anywhere until registered."
+  },
+  "operatingModel": {
+    "type": "remote-first",
+    "availability": "24/7",
+    "onSite": {
+      "en": "In-person visits for discovery, installation, data entry and training are arranged per project.",
+      "si": "ව්‍යාපාරික ස්ථානයට පැමිණ අවශ්‍යතා හඳුනාගැනීම, install කිරීම, data entry සහ training ලබාදෙනු ලැබේ."
+    },
+    "serviceArea": "Island-wide (Sri Lanka)"
+  },
+  "contact": {
+    "whatsapp": {
+      "number": "+94761945587",
+      "link": "https://wa.me/94761945587"
+    },
+    "phone": {
+      "number": "+94702878565",
+      "link": "tel:+94702878565"
+    },
+    "email": "20scalesolutions@gmail.com",
+    "address": null,
+    "hours": "24/7",
+    "social": {
+      "facebook": null,
+      "linkedin": null,
+      "instagram": null,
+      "youtube": null,
+      "rule": "Hide icon when value is null."
+    }
+  },
+  "vision": {
+    "en": "To become the definitive technology partner for modern enterprises, transforming operational complexity into seamless, high-performance digital ecosystems.",
+    "si": "සාම්ප්‍රදායික සහ සංකීර්ණ ව්‍යාපාරික කටයුතු වේගවත්, ස්වයංක්‍රීය සහ උසස් තාක්ෂණික පද්ධති බවට පත් කරන ප්‍රමුඛතම තාක්ෂණික හවුල්කරු වීම."
+  },
+  "mission": {
+    "en": "To engineer robust, offline-first software and automated solutions that eliminate friction, secure hardware workflows, and scale business growth.",
+    "si": "ව්‍යාපාරිකයන්ට බාධාවකින් තොරව ක්‍රියාත්මක වීමට හැකි වන පරිදි, අන්තර්ජාලය නොමැතිව වුවද ක්‍රියාත්මක වන (offline-first) ශක්තිමත් මෘදුකාංග සහ ස්වයංක්‍රීය විසඳුම් නිර්මාණය කිරීම."
+  },
+  "story": {
+    "title": {
+      "en": "From Local Ground Realities to Enterprise Software Engineering",
+      "si": "ප්‍රාදේශීය යථාර්ථයෙන් Enterprise මෘදුකාංග ඉංජිනේරු විද්‍යාව දක්වා"
+    },
+    "paragraphs": [
+      {
+        "en": "20Scale Solutions started with a simple, eye-opening observation: local businesses—from bustling hardware stores to complex auto spare parts outlets—were being slowed down by clunky, paper-based ledgers and software that failed when the internet dropped.",
+        "si": "20Scale Solutions ආරම්භ වූයේ සරල නමුත් ඇස් ඇරවන නිරීක්ෂණයකින්: කාර්යබහුල හාඩ්වෙයාර් වෙළඳසැල්වල සිට සංකීර්ණ වාහන අමතර කොටස් වෙළඳසැල් දක්වා දේශීය ව්‍යාපාර, අතින් ලියන ලෙජර් පොත් සහ අන්තර්ජාලය බිඳවැටුණු විට ක්‍රියා නොකරන මෘදුකාංග නිසා මන්දගාමී වී තිබුණි."
+      },
+      {
+        "en": "Founded by a team of passionate software engineers and system architects, 20Scale was born to bridge the gap between heavy enterprise technology and real-world retail needs. We realized that store owners don't need fancy, complicated dashboards; they need lightning-fast billing, foolproof inventory tracking, reliable credit management, and systems that just work—even offline.",
+        "si": "උද්යෝගිමත් මෘදුකාංග ඉංජිනේරුවන් සහ පද්ධති ගෘහ නිර්මාණ ශිල්පීන් පිරිසක් විසින් ආරම්භ කළ 20Scale, බරපතළ enterprise තාක්ෂණය සහ සැබෑ සිල්ලර ව්‍යාපාරික අවශ්‍යතා අතර පරතරය පුරවන්නට බිහි විය. වෙළඳසැල් හිමිකරුවන්ට අවශ්‍ය සංකීර්ණ dashboards නොව, අතිශය වේගවත් බිල්පත් සැකසීම, නිවැරදි තොග පාලනය, විශ්වාසදායක ණය කළමනාකරණය සහ අන්තර්ජාලය නැතිවුවද වැඩ කරන පද්ධති බව අපි තේරුම් ගත්තෙමු."
+      },
+      {
+        "en": "Today, we build high-performance, offline-first POS systems and custom software solutions designed for one exact purpose: to eliminate operational friction and scale businesses forward. We don't just write code; we engineer the digital backbone that keeps modern commerce moving.",
+        "si": "අද අපි අන්තර්ජාලය නැතිවුවද ක්‍රියා කරන (offline-first), ඉහළ කාර්යසාධනයක් සහිත POS පද්ධති සහ custom මෘදුකාංග විසඳුම් නිර්මාණය කරන්නෙමු. අපගේ එකම අරමුණ: ව්‍යාපාරික බාධා ඉවත් කර ව්‍යාපාර ඉදිරියට ගෙන යාම. අපි කේත ලියන්නේ පමණක් නොවේ; නූතන වාණිජ්‍යය ඉදිරියට ගෙන යන ඩිජිටල් කොඳු නාරටිය ඉංජිනේරුකරණය කරන්නෙමු."
+      }
+    ]
+  },
+  "deliveredProjects": {
+    "count": 2,
+    "type": "POS systems",
+    "note": "Show this honestly. Do not show inflated counters (users, countries, uptime %, ratings) -- none are verified."
+  }
+}

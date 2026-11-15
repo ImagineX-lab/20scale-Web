@@ -1,0 +1,325 @@
+{
+  "_meta": {
+    "note": "Everything is custom-built. 'status: offered' = we can build it; it is NOT a claim of an existing ready product. Only 2 POS projects are delivered so far (see company.json)."
+  },
+  "positioning": {
+    "en": "Not a ready-made package. We study your business first, then build the exact solution.",
+    "si": "සූදානම් කළ package එකක් නොවේ. අපි ඔබේ ව්‍යාපාරය මුලින් හොඳින් අධ්‍යයනය කර, ඔබටම ගැලපෙන විසඳුම නිර්මාණය කරමු."
+  },
+  "deploymentOptions": [
+    {
+      "id": "desktop",
+      "name": {
+        "en": "Desktop",
+        "si": "Desktop"
+      },
+      "summary": {
+        "en": "Runs fully offline on your own PC. One-time cost.",
+        "si": "ඔබේම PC එකේ අන්තර්ජාලය නැතිව සම්පූර්ණයෙන් ක්‍රියා කරයි. එක්වරක් ගෙවීම."
+      },
+      "offline": true
+    },
+    {
+      "id": "cloud",
+      "name": {
+        "en": "Cloud",
+        "si": "Cloud"
+      },
+      "summary": {
+        "en": "Access from anywhere, multi-branch friendly. Yearly hosting applies.",
+        "si": "ඕනෑම තැනක සිට භාවිතා කළ හැක, බහු-ශාඛා සඳහා සුදුසුයි. වාර්ෂික hosting ගාස්තුවක් ඇත."
+      },
+      "offline": false
+    },
+    {
+      "id": "hybrid",
+      "name": {
+        "en": "Hybrid (Desktop + Cloud)",
+        "si": "Hybrid (Desktop + Cloud)"
+      },
+      "summary": {
+        "en": "Works offline locally and syncs to the cloud when online.",
+        "si": "දේශීයව offline වැඩ කරන අතර online වූ විට cloud එකට sync වේ."
+      },
+      "offline": true
+    }
+  ],
+  "solutions": [
+    {
+      "id": "pos",
+      "name": {
+        "en": "POS & Billing Systems",
+        "si": "POS සහ බිල්පත් පද්ධති"
+      },
+      "summary": {
+        "en": "Fast billing, stock, credit, returns, reports -- built around how your shop really works.",
+        "si": "වේගවත් බිල්පත්, තොග, ණය, ආපසු ගැනීම්, වාර්තා -- ඔබේ වෙළඳසැල සැබවින්ම වැඩ කරන ආකාරයට."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "inventory",
+      "name": {
+        "en": "Inventory & Warehouse Management",
+        "si": "තොග සහ ගබඩා කළමනාකරණය"
+      },
+      "summary": {
+        "en": "Accurate stock tracking, GRN, transfers, reorder alerts.",
+        "si": "නිවැරදි තොග පාලනය, GRN, මාරු කිරීම්, නැවත ඇණවුම් ඇඟවීම්."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "erp",
+      "name": {
+        "en": "ERP & Business Management",
+        "si": "ERP සහ ව්‍යාපාරික කළමනාකරණය"
+      },
+      "summary": {
+        "en": "Sales, purchasing, accounting and reporting in one system.",
+        "si": "විකුණුම්, මිලදී ගැනීම්, ගිණුම්කරණය සහ වාර්තා එකම පද්ධතියක."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "distribution",
+      "name": {
+        "en": "Distribution & Credit Management",
+        "si": "බෙදාහැරීම් සහ ණය කළමනාකරණය"
+      },
+      "summary": {
+        "en": "Dealer accounts, credit limits, route/delivery tracking.",
+        "si": "ඩීලර් ගිණුම්, ණය සීමා, බෙදාහැරීම් නිරීක්ෂණය."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "hr",
+      "name": {
+        "en": "HR, Payroll & Attendance",
+        "si": "HR, වැටුප් සහ පැමිණීම"
+      },
+      "summary": {
+        "en": "Staff records, payroll, fingerprint attendance integration.",
+        "si": "සේවක වාර්තා, වැටුප්, ඇඟිලි සලකුණු පැමිණීම."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "management-apps",
+      "name": {
+        "en": "Education & Service Management",
+        "si": "අධ්‍යාපන සහ සේවා කළමනාකරණය"
+      },
+      "summary": {
+        "en": "Tuition, school, appointment and membership systems.",
+        "si": "ටියුෂන්, පාසල්, appointment සහ සාමාජික කළමනාකරණ පද්ධති."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "web-mobile",
+      "name": {
+        "en": "Websites, Web Apps & Mobile Apps",
+        "si": "වෙබ් අඩවි, Web Apps සහ Mobile Apps"
+      },
+      "summary": {
+        "en": "Business websites, online ordering, custom web and mobile apps.",
+        "si": "ව්‍යාපාරික වෙබ් අඩවි, online ඇණවුම්, custom web සහ mobile apps."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "automation",
+      "name": {
+        "en": "Automation & Integrations",
+        "si": "Automation සහ Integrations"
+      },
+      "summary": {
+        "en": "Automate repetitive work; connect SMS, WhatsApp, accounting, devices.",
+        "si": "පුනරාවර්තන වැඩ ස්වයංක්‍රීය කිරීම; SMS, WhatsApp, ගිණුම්කරණය, උපාංග සම්බන්ධ කිරීම."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "hardware-guidance",
+      "name": {
+        "en": "Hardware Guidance & Vendor Connection",
+        "si": "Hardware මග පෙන්වීම සහ vendor සම්බන්ධතාව"
+      },
+      "summary": {
+        "en": "We recommend the right hardware and connect you directly to the vendor with transparent pricing.",
+        "si": "නිවැරදි hardware නිර්දේශ කර, විනිවිද පෙනෙන මිල ගණන් සහිතව vendor ව කෙලින්ම ඔබට සම්බන්ධ කරදෙමු."
+      },
+      "status": "offered",
+      "deployment": [
+        "desktop",
+        "cloud",
+        "hybrid"
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "id": "hardware-stores",
+      "name": {
+        "en": "Hardware & Building Materials",
+        "si": "Hardware සහ ඉදිකිරීම් ද්‍රව්‍ය"
+      },
+      "pain": {
+        "en": "Unit conversions, bulk/credit customers, heavy stock.",
+        "si": "ඒකක පරිවර්තන, තොග/ණය ගනුදෙනුකරුවන්, විශාල තොග."
+      },
+      "delivered": null
+    },
+    {
+      "id": "auto-parts",
+      "name": {
+        "en": "Auto Spare Parts & Workshops",
+        "si": "වාහන අමතර කොටස් සහ වැඩපොළ"
+      },
+      "pain": {
+        "en": "Thousands of part numbers, vehicle compatibility, job cards.",
+        "si": "කොටස් අංක දහස් ගණන්, වාහන ගැළපීම, job cards."
+      },
+      "delivered": null
+    },
+    {
+      "id": "retail-grocery",
+      "name": {
+        "en": "Retail, Grocery & Supermarkets",
+        "si": "සිල්ලර, ග්‍රොසරි සහ සුපර්මාකට්"
+      },
+      "pain": {
+        "en": "Fast checkout, barcodes, scales, loyalty.",
+        "si": "වේගවත් checkout, barcode, තරාදි, loyalty."
+      },
+      "delivered": null
+    },
+    {
+      "id": "pharmacy",
+      "name": {
+        "en": "Pharmacies",
+        "si": "ඖෂධ ශාලා"
+      },
+      "pain": {
+        "en": "Batch & expiry tracking, prescriptions.",
+        "si": "Batch සහ expiry පාලනය, බෙහෙත් වට්ටෝරු."
+      },
+      "delivered": null
+    },
+    {
+      "id": "restaurants",
+      "name": {
+        "en": "Restaurants & Cafes",
+        "si": "අවන්හල් සහ කැෆේ"
+      },
+      "pain": {
+        "en": "Tables, KOT, kitchen flow, recipe costing.",
+        "si": "මේස, KOT, කුස්සි ගලනය, වට්ටෝරු පිරිවැය."
+      },
+      "delivered": null
+    },
+    {
+      "id": "fashion",
+      "name": {
+        "en": "Clothing & Fashion",
+        "si": "ඇඳුම් සහ විලාසිතා"
+      },
+      "pain": {
+        "en": "Size/colour variants, seasonal stock.",
+        "si": "ප්‍රමාණ/වර්ණ variants, සෘතුමය තොග."
+      },
+      "delivered": null
+    },
+    {
+      "id": "distributors",
+      "name": {
+        "en": "Distributors & Wholesalers",
+        "si": "බෙදාහරින්නන් සහ තොග වෙළෙන්දන්"
+      },
+      "pain": {
+        "en": "Dealer credit, routes, price levels.",
+        "si": "ඩීලර් ණය, මාර්ග, මිල මට්ටම්."
+      },
+      "delivered": null
+    },
+    {
+      "id": "services",
+      "name": {
+        "en": "Salons, Gyms & Service Businesses",
+        "si": "සැලෝන්, ජිම් සහ සේවා ව්‍යාපාර"
+      },
+      "pain": {
+        "en": "Appointments, memberships, staff commission.",
+        "si": "Appointments, සාමාජිකත්ව, සේවක කොමිස්."
+      },
+      "delivered": null
+    },
+    {
+      "id": "education",
+      "name": {
+        "en": "Schools & Tuition Classes",
+        "si": "පාසල් සහ ටියුෂන් පන්ති"
+      },
+      "pain": {
+        "en": "Student records, attendance, fees.",
+        "si": "සිසු වාර්තා, පැමිණීම, ගාස්තු."
+      },
+      "delivered": null
+    },
+    {
+      "id": "other",
+      "name": {
+        "en": "Any other business",
+        "si": "වෙනත් ඕනෑම ව්‍යාපාරයක්"
+      },
+      "pain": {
+        "en": "Tell us your problem -- we design the solution.",
+        "si": "ඔබේ ගැටලුව කියන්න -- විසඳුම අපි නිර්මාණය කරමු."
+      },
+      "delivered": null
+    }
+  ],
+  "industryPagesRule": "Phase 1: one page 'Solutions' listing all industries. Create separate industry pages (for SEO) only for industries with real delivered work or after owner approval."
+}

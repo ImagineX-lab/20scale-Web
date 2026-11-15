@@ -1,0 +1,122 @@
+[
+  {
+    "q": {
+      "en": "How is your pricing different?",
+      "si": "ඔබේ මිල ගණන් වෙනස් වන්නේ කොහොමද?"
+    },
+    "a": {
+      "en": "We give one total price and show exactly how it is built. No hidden monthly fees or surprise service charges.",
+      "si": "අපි එකම මුළු මිලක් දී එය හැදෙන ආකාරය හරියටම පෙන්වමු. සැඟවුණු මාසික ගාස්තු හෝ අමතර service charges නැත."
+    }
+  },
+  {
+    "q": {
+      "en": "Is your software ready-made?",
+      "si": "ඔබේ software ready-made එකක්ද?"
+    },
+    "a": {
+      "en": "No. Every solution is 100% custom-built after we study your business.",
+      "si": "නැත. ඔබේ ව්‍යාපාරය අධ්‍යයනය කළ පසු හැම විසඳුමක්ම 100% custom ලෙස නිර්මාණය කරමු."
+    }
+  },
+  {
+    "q": {
+      "en": "Does it work without internet?",
+      "si": "අන්තර්ජාලය නැතිව වැඩ කරනවද?"
+    },
+    "a": {
+      "en": "Yes. We build offline-first Desktop systems, and Hybrid systems that sync when online.",
+      "si": "ඔව්. අපි offline-first Desktop පද්ධති සහ online වූ විට sync වන Hybrid පද්ධති නිර්මාණය කරමු."
+    }
+  },
+  {
+    "q": {
+      "en": "What about hardware?",
+      "si": "Hardware ගැන මොකද?"
+    },
+    "a": {
+      "en": "We recommend the right hardware and connect you directly to the vendor. You see the vendor and the real price.",
+      "si": "නිවැරදි hardware නිර්දේශ කර vendor ව ඔබට කෙලින්ම සම්බන්ධ කරමු. Vendor සහ සැබෑ මිල ඔබට පෙනේ."
+    }
+  },
+  {
+    "q": {
+      "en": "How long does it take?",
+      "si": "කොච්චර කාලයක් යනවද?"
+    },
+    "a": {
+      "en": "A basic POS can be ready within about a month. Larger, complex systems take longer.",
+      "si": "සරල POS එකක් මාසයක් පමණ ඇතුළත සූදානම් කළ හැක. විශාල, සංකීර්ණ පද්ධති වලට වැඩි කාලයක් යයි."
+    }
+  },
+  {
+    "q": {
+      "en": "Do you help with my existing data?",
+      "si": "මගේ දැනට තියෙන data ගැන උදව් කරනවද?"
+    },
+    "a": {
+      "en": "Yes. Digital data can be migrated. If your records are in books, our team enters them in person (charged per person per day).",
+      "si": "ඔව්. Digital data migrate කළ හැක. වාර්තා පොත්වල නම් අපේ කණ්ඩායම පැමිණ ඇතුළත් කරයි (පුද්ගලයෙකු/දිනකට ගාස්තුවක්)."
+    }
+  },
+  {
+    "q": {
+      "en": "Will you train my staff?",
+      "si": "මගේ කාර්ය මණ්ඩලයට training දෙනවද?"
+    },
+    "a": {
+      "en": "Yes, in-person training and a user manual are free.",
+      "si": "ඔව්, පුද්ගලික training සහ user manual නොමිලේ."
+    }
+  },
+  {
+    "q": {
+      "en": "What support do I get?",
+      "si": "මොන වගේ support එකක්ද ලැබෙන්නේ?"
+    },
+    "a": {
+      "en": "WhatsApp Business support, a direct hotline, remote support, and on-site visits when really needed. Critical issues: an engineer connects remotely within 30 minutes.",
+      "si": "WhatsApp Business support, සෘජු hotline, remote support සහ අවශ්‍යම විට on-site පැමිණීම. බරපතළ ගැටලුවක් නම් විනාඩි 30ක් ඇතුළත ඉංජිනේරුවෙක් remote සම්බන්ධ වේ."
+    }
+  },
+  {
+    "q": {
+      "en": "What is not covered by free support?",
+      "si": "නොමිලේ support එකට අයිති නැත්තේ මොනවාද?"
+    },
+    "a": {
+      "en": "Hardware failures, data loss caused by user negligence, and new features outside the agreed scope (quoted separately).",
+      "si": "Hardware දෝෂ, පරිශීලක නොසැලකිල්ලෙන් වන data අහිමි වීම, සහ එකඟ වූ විෂය පථයෙන් පිටත අලුත් features (වෙනම quote කරයි)."
+    }
+  },
+  {
+    "q": {
+      "en": "Do you offer refunds?",
+      "si": "මුදල් ආපසු ලැබෙනවද?"
+    },
+    "a": {
+      "en": "No refunds, except an amount overpaid by mistake, which is returned.",
+      "si": "නැත; වැරදීමකින් වැඩිපුර ගෙවූ මුදල පමණක් ආපසු ගෙවනු ලැබේ."
+    }
+  },
+  {
+    "q": {
+      "en": "How do I pay?",
+      "si": "ගෙවන්නේ කොහොමද?"
+    },
+    "a": {
+      "en": "By bank transfer. There are no online card payments.",
+      "si": "බැංකු මාරුවෙන්. Online card ගෙවීම් නැත."
+    }
+  },
+  {
+    "q": {
+      "en": "Do you support Tamil?",
+      "si": "දෙමළ භාෂාව තියෙනවද?"
+    },
+    "a": {
+      "en": "Support is currently in Sinhala and English.",
+      "si": "දැනට සහාය Sinhala සහ English භාෂාවෙන් ලැබේ."
+    }
+  }
+]

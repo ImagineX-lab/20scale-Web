@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SolutionsHero from '../../components/solutions/SolutionsHero.astro';
+import SolutionsList from '../../components/solutions/SolutionsList.astro';
+import IndustriesGrid from '../../components/solutions/IndustriesGrid.astro';
+import ContactCta from '../../components/home/ContactCta.astro';
+
+const lang = 'en' as const;
+const title = 'Software Solutions | 20Scale Solutions';
+const description = 'Offline-first POS, stock inventory, ERP, and bespoke software solutions tailored for growing businesses in Sri Lanka.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <SolutionsHero lang={lang} />
+  <SolutionsList lang={lang} />
+  <IndustriesGrid lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

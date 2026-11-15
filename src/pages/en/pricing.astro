@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PricingHero from '../../components/pricing/PricingHero.astro';
+import PricingPackages from '../../components/pricing/PricingPackages.astro';
+import PricingBreakdownExplainer from '../../components/pricing/PricingBreakdownExplainer.astro';
+import InteractiveCalculator from '../../components/pricing/InteractiveCalculator.astro';
+import PricingFaq from '../../components/pricing/PricingFaq.astro';
+import ContactCta from '../../components/home/ContactCta.astro';
+
+const lang = 'en' as const;
+const title = 'Pricing & Instant Quote Calculator | 20Scale Solutions';
+const description = 'Transparent pricing with zero hidden fees. Interactive instant quote calculator for Desktop, Cloud, and Hybrid POS systems in Sri Lanka.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <PricingHero lang={lang} />
+  <PricingPackages lang={lang} />
+  <PricingBreakdownExplainer lang={lang} />
+  <InteractiveCalculator lang={lang} />
+  <PricingFaq lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

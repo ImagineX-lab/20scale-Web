@@ -1,0 +1,298 @@
+---
+import hardwareData from '../../../content/hardware.json';
+import companyData from '../../../content/company.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const promise = hardwareData.promise[lang];
+const categories = hardwareData.availableCategoriesForFuture;
+const supportBoundary = hardwareData.supportBoundary;
+const whatsapp = companyData.contact?.whatsapp;
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section class="hardware-page-section" aria-labelledby="hardware-page-heading">
+  <div class="hardware-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'විනිවිද Vendor ආකෘතිය' : 'Transparent Vendor Referral Model'}
+      </span>
+      <h1 id="hardware-page-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            අතරමැදි කොමිස් නැති <span class="text-cyan">සැබෑ මිලටම Hardware</span>
+          </>
+        ) : (
+          <>
+            Direct Hardware Sourcing: <span class="text-cyan">Genuine Vendor Rates</span>
+          </>
+        )}
+      </h1>
+      <p class="section-sub">
+        {promise}
+      </p>
+    </div>
+
+    <!-- Transparent Model Highlight -->
+    <div class="model-banner">
+      <div class="model-badge">{lang === 'si' ? 'අපගේ පොරොන්දුව' : 'Our Hardware Commitment'}</div>
+      <h2 class="model-title">
+        {lang === 'si'
+          ? 'අපි Hardware මත ලාභ නොතබමු (Zero Margin on Hardware)'
+          : 'Zero Markups on Physical Devices'}
+      </h2>
+      <p class="model-desc">
+        {lang === 'si'
+          ? 'බොහෝ ආයතන hardware උපකරණ සඳහා 30%-50% ක අමතර අතරමැදි ලාභයක් එකතු කරයි. 20Scale හි ප්‍රතිපත්තිය වන්නේ ඔබගේ පද්ධතියට ගැළපෙන හොඳම hardware නිර්දේශ කර, විශ්වාසවන්ත තොග vendor වෙත සෘජුවම ඔබව සම්බන්ධ කර සැබෑ වෙළඳපල මිලට ලබාගැනීමට සැලැස්වීමයි.'
+          : 'Unlike conventional vendors who add heavy markups on POS hardware, 20Scale connects you directly with verified device distributors at genuine trade rates. You pay the vendor directly without hidden markups.'}
+      </p>
+    </div>
+
+    <!-- Supported Hardware Categories -->
+    <div class="categories-block">
+      <h2 class="block-title">
+        {lang === 'si' ? 'අපගේ මෘදුකාංග සමග 100% ගැළපෙන Hardware කාණ්ඩ' : 'Compatible Hardware Supported by 20Scale'}
+      </h2>
+      <div class="cat-grid">
+        {categories.map((cat) => (
+          <div class="cat-item">
+            <svg class="cat-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="cat-name">{cat}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Warranty & Support Boundary -->
+    <div class="boundary-card">
+      <h3 class="boundary-title">{lang === 'si' ? 'වගකීම් සහ සීමාවන් (Support Boundary)' : 'Hardware Warranty & Support Scope'}</h3>
+      <p class="boundary-text">{supportBoundary}</p>
+      <p class="boundary-sub">
+        {lang === 'si'
+          ? 'ඔබ සතුව දැනටමත් පරිගණකයක් හෝ printer එකක් තිබේ නම්, අපගේ මෘදුකාංගය එම උපකරණ සමග ගැළපෙන ලෙස configure කරදීමට අප සූදානම්.'
+          : 'If you already own desktop PCs, thermal printers or barcode scanners, we will inspect and integrate our software with your existing equipment.'}
+      </p>
+    </div>
+
+    <!-- Action Section -->
+    <div class="hardware-cta">
+      <a href={`${prefix}/contact`} class="btn-hw-consult">
+        <span>{lang === 'si' ? 'Hardware උපදෙස් ලබාගන්න' : 'Consult for Hardware Recommendation'}</span>
+        <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hardware-page-section {
+    padding: 4.5rem 1.25rem 6rem;
+    position: relative;
+  }
+
+  .hardware-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .model-banner {
+    background: linear-gradient(135deg, rgba(7, 16, 28, 0.95) 0%, rgba(11, 23, 38, 0.95) 100%);
+    border: 1px solid rgba(0, 229, 229, 0.35);
+    border-radius: var(--radius-card);
+    padding: 2.5rem 2rem;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 0 28px rgba(0, 229, 229, 0.08);
+  }
+
+  .model-badge {
+    display: inline-block;
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .model-title {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .model-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+  }
+
+  .categories-block {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2.25rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .block-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cat-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .cat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8875rem;
+    color: var(--color-text);
+  }
+
+  .cat-check {
+    width: 18px;
+    height: 18px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .boundary-card {
+    background: rgba(7, 16, 28, 0.7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .boundary-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .boundary-text {
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .boundary-sub {
+    font-size: 0.8125rem;
+    color: var(--color-primary);
+    line-height: 1.5;
+  }
+
+  .hardware-cta {
+    text-align: center;
+  }
+
+  .btn-hw-consult {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: #00030B;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-hw-consult:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 229, 229, 0.4);
+  }
+
+  .cta-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+  }
+
+  .btn-hw-consult:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-hw-consult,
+    .cta-arrow {
+      transition: none !important;
+    }
+  }
+</style>

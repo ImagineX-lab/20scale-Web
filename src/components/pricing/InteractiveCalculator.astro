@@ -1,0 +1,1283 @@
+---
+import pricingData from '../../../content/pricing.json';
+import companyData from '../../../content/company.json';
+import processData from '../../../content/process-support.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const calculator = pricingData.calculator;
+const rates = calculator.rates;
+const businessTypes = calculator.inputs.businessTypes;
+const exclusions = processData.exclusions.items;
+const whatsappNum = companyData.contact?.whatsapp?.number || '+94761945587';
+const phoneNum = companyData.contact?.phone?.number || '+94702878565';
+const email = companyData.contact?.email || '20scalesolutions@gmail.com';
+---
+
+<section id="quote-calculator" class="calc-section" aria-labelledby="calc-heading">
+  <div class="calc-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'Interactive Quote Calculator' : 'Estimate Your Investment'}
+      </span>
+      <h2 id="calc-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ඔබේ ව්‍යාපාරයට ගැලපෙන <span class="text-cyan">මිල ගණනය කරගන්න</span>
+          </>
+        ) : (
+          <>
+            Calculate Your Tailored <span class="text-cyan">POS System Quote</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {calculator.disclaimer[lang]}
+      </p>
+    </div>
+
+    <div class="calc-grid">
+      <!-- Calculator Configuration Form -->
+      <div class="calc-form-panel">
+        <form id="pos-calculator-form" class="calc-form" onsubmit="return false;">
+          
+          <!-- Step 1: Business Details -->
+          <fieldset class="form-step">
+            <legend class="step-legend">
+              <span class="step-num">1</span>
+              <span>{lang === 'si' ? 'ව්‍යාපාරික තොරතුරු' : 'Your Business Details'}</span>
+            </legend>
+            
+            <div class="form-row">
+              <div class="form-field">
+                <label for="cust-name">
+                  {lang === 'si' ? 'ඔබගේ නම *' : 'Full Name *'}
+                </label>
+                <input type="text" id="cust-name" required placeholder={lang === 'si' ? 'කසුන් පෙරේරා' : 'John Doe'} />
+              </div>
+
+              <div class="form-field">
+                <label for="cust-phone">
+                  {lang === 'si' ? 'දුරකථන අංකය (WhatsApp) *' : 'Phone / WhatsApp *'}
+                </label>
+                <input type="tel" id="cust-phone" required placeholder="07X XXX XXXX" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="cust-business">
+                  {lang === 'si' ? 'ව්‍යාපාරයේ නම' : 'Business Name'}
+                </label>
+                <input type="text" id="cust-business" placeholder={lang === 'si' ? 'පෙරේරා ස්ටෝර්ස්' : 'Perera Enterprises'} />
+              </div>
+
+              <div class="form-field">
+                <label for="cust-type">
+                  {lang === 'si' ? 'ව්‍යාපාර ක්ෂේත්‍රය' : 'Business Category'}
+                </label>
+                <select id="cust-type">
+                  {businessTypes.map((bType) => (
+                    <option value={bType}>{bType}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="cust-city">
+                {lang === 'si' ? 'නගරය / දිස්ත්‍රික්කය' : 'City / District'}
+              </label>
+              <input type="text" id="cust-city" placeholder={lang === 'si' ? 'කුරුණෑගල / කොළඹ / මහනුවර' : 'Kurunegala / Colombo / Kandy'} />
+            </div>
+          </fieldset>
+
+          <!-- Step 2: Software Package Selection -->
+          <fieldset class="form-step">
+            <legend class="step-legend">
+              <span class="step-num">2</span>
+              <span>{lang === 'si' ? 'මෘදුකාංග පැකේජය තෝරන්න' : 'Select Deployment Package'}</span>
+            </legend>
+
+            <div class="package-selector" role="radiogroup">
+              <label class="pkg-radio-label active" data-pkg-id="desktop">
+                <input type="radio" name="package" value="desktop" checked />
+                <div class="radio-card">
+                  <div class="card-radio-top">
+                    <span class="radio-title">Desktop</span>
+                    <span class="radio-tag">100% Offline</span>
+                  </div>
+                  <span class="radio-price">LKR {rates.base.desktop.toLocaleString('en-US')}</span>
+                  <span class="radio-sub">{lang === 'si' ? 'එක්වරක් පමණක් ගෙවීම' : 'One-time investment'}</span>
+                </div>
+              </label>
+
+              <label class="pkg-radio-label" data-pkg-id="cloud">
+                <input type="radio" name="package" value="cloud" />
+                <div class="radio-card">
+                  <div class="card-radio-top">
+                    <span class="radio-title">Cloud</span>
+                    <span class="radio-tag">Multi-branch</span>
+                  </div>
+                  <span class="radio-price">LKR {rates.base.cloud.toLocaleString('en-US')}</span>
+                  <span class="radio-sub">+ LKR {rates.hostingPerYear.toLocaleString('en-US')} / {lang === 'si' ? 'වසරක hosting' : 'year hosting'}</span>
+                </div>
+              </label>
+
+              <label class="pkg-radio-label" data-pkg-id="hybrid">
+                <input type="radio" name="package" value="hybrid" />
+                <div class="radio-card">
+                  <div class="card-radio-top">
+                    <span class="radio-title">Hybrid</span>
+                    <span class="radio-tag">Offline + Sync</span>
+                  </div>
+                  <span class="radio-price">LKR {rates.base.hybrid.toLocaleString('en-US')}</span>
+                  <span class="radio-sub">+ LKR {rates.hostingPerYear.toLocaleString('en-US')} / {lang === 'si' ? 'වසරක hosting' : 'year hosting'}</span>
+                </div>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Step 3: Stations & Branches Scale -->
+          <fieldset class="form-step">
+            <legend class="step-legend">
+              <span class="step-num">3</span>
+              <span>{lang === 'si' ? 'Counters සහ ශාඛා ප්‍රමාණය' : 'Cashier Counters & Branches'}</span>
+            </legend>
+
+            <div class="form-row">
+              <div class="form-field counter-field">
+                <div class="field-label-group">
+                  <label for="stations-count">{lang === 'si' ? 'Cashier Stations (Counters)' : 'Billing Counters'}</label>
+                  <span class="field-hint">{lang === 'si' ? 'මූලික පැකේජයට 1ක් ඇතුළත් (+Rs. 10,000 / අමතර)' : '1 included base (+Rs. 10,000 each extra)'}</span>
+                </div>
+                <div class="stepper-wrap">
+                  <button type="button" class="btn-stepper" data-step-target="stations-count" data-step="-1" aria-label="Decrease counters">−</button>
+                  <input type="number" id="stations-count" min="1" max="20" value="1" readonly />
+                  <button type="button" class="btn-stepper" data-step-target="stations-count" data-step="1" aria-label="Increase counters">+</button>
+                </div>
+              </div>
+
+              <div class="form-field counter-field">
+                <div class="field-label-group">
+                  <label for="branches-count">{lang === 'si' ? 'අමතර ශාඛා (Branches)' : 'Additional Branches'}</label>
+                  <span class="field-hint">{lang === 'si' ? '(+Rs. 15,000 / අමතර ශාඛාව)' : '(+Rs. 15,000 each branch)'}</span>
+                </div>
+                <div class="stepper-wrap">
+                  <button type="button" class="btn-stepper" data-step-target="branches-count" data-step="-1" aria-label="Decrease branches">−</button>
+                  <input type="number" id="branches-count" min="0" max="15" value="0" readonly />
+                  <button type="button" class="btn-stepper" data-step-target="branches-count" data-step="1" aria-label="Increase branches">+</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Step 4: Hardware Preference -->
+          <fieldset class="form-step">
+            <legend class="step-legend">
+              <span class="step-num">4</span>
+              <span>{lang === 'si' ? 'Hardware අවශ්‍යතාව' : 'Hardware Requirements'}</span>
+            </legend>
+
+            <div class="hardware-selection">
+              <label class="checkbox-container">
+                <input type="radio" name="hardware_opt" value="own" checked />
+                <span class="radio-custom"></span>
+                <span class="checkbox-text">
+                  <strong>{lang === 'si' ? 'මා සතුව දැනටමත් Hardware තිබේ (PC / Printers)' : 'I already have my own hardware (PC / Printers)'}</strong>
+                  <small>{lang === 'si' ? 'අප ඔබගේ පවතින පරිගණක හා printers වලට මෘදුකාංගය සකස් කරදෙමු (Rs. 0)' : 'We configure our software to work with your existing setup (Rs. 0)'}</small>
+                </span>
+              </label>
+
+              <label class="checkbox-container">
+                <input type="radio" name="hardware_opt" value="referral" />
+                <span class="radio-custom"></span>
+                <span class="checkbox-text">
+                  <strong>{lang === 'si' ? 'Hardware උපදෙස් සහ Vendor සම්බන්ධතාව අවශ්‍යයි' : 'Need hardware advice & direct vendor referral'}</strong>
+                  <small>{lang === 'si' ? 'අපි ලාභ නොතබා සැබෑ වෙළඳපල මිලටම විශ්වාසවන්ත vendor වෙත සම්බන්ධ කරමු (Quoted at real vendor price)' : 'We connect you to verified hardware suppliers at transparent zero-markup rates'}</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Step 5: Optional Extra Services -->
+          <fieldset class="form-step">
+            <legend class="step-legend">
+              <span class="step-num">5</span>
+              <span>{lang === 'si' ? 'අමතර සේවා (Extras)' : 'Optional Add-on Services'}</span>
+            </legend>
+
+            <div class="extras-list">
+              <label class="checkbox-container">
+                <input type="checkbox" id="opt-training" checked />
+                <span class="checkbox-custom"></span>
+                <span class="checkbox-text">
+                  <strong>{lang === 'si' ? 'ස්ථානයට පැමිණ ස්ථාපනය සහ සේවක පුහුණුව (On-site Training)' : 'On-site Complete Device Setup & Staff Coaching'}</strong>
+                  <small>+ LKR {rates.installTraining.toLocaleString('en-US')}</small>
+                </span>
+              </label>
+
+              <div class="extra-input-row">
+                <label for="data-entry-days">
+                  {lang === 'si' ? 'පොත්පත්වල ඇති data ඇතුළත් කිරීමට අපේ කණ්ඩායම පැමිණීම (දින ගණන):' : 'In-person physical book ledger data entry (Days):'}
+                </label>
+                <div class="days-input-wrap">
+                  <input type="number" id="data-entry-days" min="0" max="30" value="0" />
+                  <span class="days-hint">@ LKR {rates.dataEntryPerPersonPerDay.toLocaleString('en-US')} / {lang === 'si' ? 'දිනකට' : 'day'}</span>
+                </div>
+              </div>
+
+              <div class="extra-input-row">
+                <label for="transport-km">
+                  {lang === 'si' ? 'කුරුණෑගල / කෑගල්ල ප්‍රදේශයෙන් පිටත ඇස්තමේන්තු දුර (KM):' : 'Estimated distance outside Kurunegala/Kegalle base (KM):'}
+                </label>
+                <div class="days-input-wrap">
+                  <input type="number" id="transport-km" min="0" max="400" value="0" />
+                  <span class="days-hint">@ LKR {rates.transportPerKm.toLocaleString('en-US')} / km</span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Custom Requirement Note -->
+          <div class="form-field">
+            <label for="cust-notes">
+              {lang === 'si' ? 'ඔබගේ විශේෂ අවශ්‍යතා / සටහන් (විකල්පයි)' : 'Specific Workflow Requirements (Optional)'}
+            </label>
+            <textarea id="cust-notes" rows="3" placeholder={lang === 'si' ? 'උදා: Barcode printer එකක් අවශ්‍යයි, පැරණි Excel data migrate කළ යුතුයි...' : 'e.g., Weighing scale integration, specific barcode formats, loyalty discounts...'}></textarea>
+          </div>
+        </form>
+      </div>
+
+      <!-- Live Quote Summary Panel -->
+      <aside class="calc-summary-panel" aria-label="Estimated Quotation Summary">
+        <div class="summary-card">
+          <div class="summary-card-header">
+            <span class="estimate-tag">{lang === 'si' ? 'තත්‍ය කාලීන ඇස්තමේන්තුව' : 'Live Quote Summary'}</span>
+            <h3 class="summary-title">{lang === 'si' ? 'ඔබගේ Quotation එක' : 'Your Itemized Estimate'}</h3>
+          </div>
+
+          <!-- Line-by-line summary table -->
+          <div class="summary-breakdown" id="quote-line-items">
+            <!-- Dynamically injected by JS -->
+          </div>
+
+          <div class="summary-total-box">
+            <div class="total-label-row">
+              <span class="total-label">{lang === 'si' ? 'ඇස්තමේන්තුගත මුළු ආයෝජනය:' : 'Estimated Total Investment:'}</span>
+              <span class="total-currency">LKR</span>
+            </div>
+            <div class="total-amount" id="quote-grand-total">
+              LKR 77,500
+            </div>
+            <p class="hosting-recurring-note" id="quote-recurring-note" style="display: none;">
+              {lang === 'si' ? '+ වාර්ෂික Cloud Hosting: LKR 18,000 / වසරකට' : '+ Yearly Cloud Hosting: LKR 18,000 / year'}
+            </p>
+          </div>
+
+          <p class="summary-disclaimer">
+            {calculator.disclaimer[lang]}
+          </p>
+
+          <!-- Action Buttons / Outputs -->
+          <div class="summary-actions">
+            <!-- Output 1: Print / Save Quote PDF -->
+            <button type="button" id="btn-print-quote" class="btn-action-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="action-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              <span>{lang === 'si' ? 'Quotation (PDF) මුද්‍රණය කරන්න' : 'Print / Download Quote (PDF)'}</span>
+            </button>
+
+            <!-- Output 2: Consult via WhatsApp -->
+            <a id="btn-wa-quote" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-wa">
+              <svg class="action-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.554zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+              </svg>
+              <span>{lang === 'si' ? 'මෙම Quote එක WhatsApp යවන්න' : 'Send Quote via WhatsApp'}</span>
+            </a>
+
+            <!-- Output 3: Order Request Submission -->
+            <button type="button" id="btn-request-order" class="btn-action-secondary">
+              <span>{lang === 'si' ? 'ඇණවුම් ඉල්ලීම යොමු කරන්න' : 'Submit Formal Order Request'}</span>
+            </button>
+          </div>
+
+          <div id="order-request-status" class="status-msg" style="display: none;"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Dedicated Printable Quote View (Visible during Print / PDF generation) -->
+  <div id="printable-quote-sheet" class="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <div class="print-brand">
+        <h1>20Scale Solutions</h1>
+        <p>{companyData.tagline[lang]}</p>
+        <p>{email} | {phoneNum} | {whatsappNum}</p>
+      </div>
+      <div class="print-meta">
+        <h2>ESTIMATED QUOTATION</h2>
+        <p><strong>Date:</strong> <span id="print-date"></span></p>
+        <p><strong>Quote ID:</strong> 20S-{Math.floor(100000 + Math.random() * 900000)}</p>
+        <p><strong>Status:</strong> Indicative Estimate</p>
+      </div>
+    </div>
+
+    <div class="print-client">
+      <h3>Client Details</h3>
+      <p><strong>Client Name:</strong> <span id="print-client-name">-</span></p>
+      <p><strong>Business Name:</strong> <span id="print-client-biz">-</span></p>
+      <p><strong>Phone:</strong> <span id="print-client-phone">-</span></p>
+      <p><strong>Location:</strong> <span id="print-client-city">-</span></p>
+      <p><strong>Category:</strong> <span id="print-client-type">-</span></p>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th>Item / Description</th>
+          <th style="text-align: right;">Amount (LKR)</th>
+        </tr>
+      </thead>
+      <tbody id="print-table-body">
+        <!-- Injected by script -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>TOTAL ESTIMATE</th>
+          <th id="print-total" style="text-align: right;">-</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="print-exclusions">
+      <h4>Terms & Exclusions (Not covered by free software warranty):</h4>
+      <ul>
+        {exclusions.map((exc) => (
+          <li>{exc.text[lang]}</li>
+        ))}
+      </ul>
+      <p class="print-footnote">
+        * Displayed prices are indicative starting rates. Final scope and deliverables are confirmed upon on-site discovery.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Client-side Calculation Engine Script -->
+<script is:inline define:vars={{ rates, lang, whatsappNum }}>
+  (function initCalculator() {
+    // DOM Elements
+    const form = document.getElementById('pos-calculator-form');
+    const custName = document.getElementById('cust-name');
+    const custPhone = document.getElementById('cust-phone');
+    const custBusiness = document.getElementById('cust-business');
+    const custType = document.getElementById('cust-type');
+    const custCity = document.getElementById('cust-city');
+    const custNotes = document.getElementById('cust-notes');
+    const stationsInput = document.getElementById('stations-count');
+    const branchesInput = document.getElementById('branches-count');
+    const trainingCheckbox = document.getElementById('opt-training');
+    const dataEntryInput = document.getElementById('data-entry-days');
+    const transportInput = document.getElementById('transport-km');
+    const lineItemsContainer = document.getElementById('quote-line-items');
+    const grandTotalEl = document.getElementById('quote-grand-total');
+    const recurringNote = document.getElementById('quote-recurring-note');
+    const btnWa = document.getElementById('btn-wa-quote');
+    const btnPrint = document.getElementById('btn-print-quote');
+    const btnOrder = document.getElementById('btn-request-order');
+    const orderStatus = document.getElementById('order-request-status');
+
+    // Steppers setup
+    document.querySelectorAll('.btn-stepper').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetId = btn.getAttribute('data-step-target');
+        const stepVal = parseInt(btn.getAttribute('data-step') || '0', 10);
+        const inputEl = document.getElementById(targetId);
+        if (!inputEl) return;
+        const minVal = parseInt(inputEl.getAttribute('min') || '0', 10);
+        const maxVal = parseInt(inputEl.getAttribute('max') || '20', 10);
+        let current = parseInt(inputEl.value || '0', 10);
+        current += stepVal;
+        if (current < minVal) current = minVal;
+        if (current > maxVal) current = maxVal;
+        inputEl.value = current;
+        recalculate();
+      });
+    });
+
+    // Package radio cards setup
+    document.querySelectorAll('.pkg-radio-label').forEach(label => {
+      label.addEventListener('click', () => {
+        document.querySelectorAll('.pkg-radio-label').forEach(l => l.classList.remove('active'));
+        label.classList.add('active');
+        const radio = label.querySelector('input[type="radio"]');
+        if (radio) {
+          radio.checked = true;
+          recalculate();
+        }
+      });
+    });
+
+    // Listen for direct package selection link from page anchors
+    document.querySelectorAll('[data-select-package]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const pkgId = btn.getAttribute('data-select-package');
+        const targetRadio = document.querySelector(`input[name="package"][value="${pkgId}"]`);
+        if (targetRadio) {
+          targetRadio.checked = true;
+          document.querySelectorAll('.pkg-radio-label').forEach(l => {
+            l.classList.toggle('active', l.getAttribute('data-pkg-id') === pkgId);
+          });
+          recalculate();
+        }
+      });
+    });
+
+    // Event listeners on all inputs
+    if (form) {
+      form.addEventListener('input', recalculate);
+      form.addEventListener('change', recalculate);
+    }
+
+    function recalculate() {
+      const selectedPkgRadio = document.querySelector('input[name="package"]:checked');
+      const pkgId = selectedPkgRadio ? selectedPkgRadio.value : 'desktop';
+      const stations = parseInt(stationsInput.value || '1', 10);
+      const branches = parseInt(branchesInput.value || '0', 10);
+      const hasTraining = trainingCheckbox ? trainingCheckbox.checked : false;
+      const dataEntryDays = parseInt(dataEntryInput.value || '0', 10);
+      const transportKm = parseInt(transportInput.value || '0', 10);
+      const hwOpt = document.querySelector('input[name="hardware_opt"]:checked')?.value || 'own';
+
+      // Formula calculation
+      const basePrice = rates.base[pkgId] || rates.base.desktop;
+      const extraStationsCost = Math.max(0, stations - 1) * rates.perExtraStation;
+      const extraBranchesCost = branches * rates.perExtraBranch;
+      const isCloudOrHybrid = pkgId === 'cloud' || pkgId === 'hybrid';
+      const trainingCost = hasTraining ? rates.installTraining : 0;
+      const dataEntryCost = dataEntryDays * rates.dataEntryPerPersonPerDay;
+      const transportCost = transportKm * rates.transportPerKm;
+
+      const total = basePrice + extraStationsCost + extraBranchesCost + trainingCost + dataEntryCost + transportCost;
+
+      // Update Recurring Note
+      if (recurringNote) {
+        if (isCloudOrHybrid) {
+          recurringNote.style.display = 'block';
+        } else {
+          recurringNote.style.display = 'none';
+        }
+      }
+
+      // Update Grand Total
+      if (grandTotalEl) {
+        grandTotalEl.textContent = `LKR ${total.toLocaleString('en-US')}`;
+      }
+
+      // Render Line Items
+      const lines = [];
+      const pkgName = pkgId === 'desktop' ? 'Desktop (100% Offline)' : pkgId === 'cloud' ? 'Cloud System' : 'Hybrid (Offline + Sync)';
+      lines.push({
+        label: `${lang === 'si' ? 'මූලික පද්ධතිය:' : 'Core Software:'} ${pkgName}`,
+        amount: basePrice
+      });
+
+      if (extraStationsCost > 0) {
+        lines.push({
+          label: `${lang === 'si' ? 'අමතර Counters' : 'Extra Cashier Counters'} (${stations - 1}x)`,
+          amount: extraStationsCost
+        });
+      }
+
+      if (extraBranchesCost > 0) {
+        lines.push({
+          label: `${lang === 'si' ? 'අමතර ශාඛා' : 'Additional Branches'} (${branches}x)`,
+          amount: extraBranchesCost
+        });
+      }
+
+      if (trainingCost > 0) {
+        lines.push({
+          label: lang === 'si' ? 'ස්ථාපනය සහ කාර්ය මණ්ඩල පුහුණුව' : 'On-site Setup & Staff Training',
+          amount: trainingCost
+        });
+      }
+
+      if (dataEntryCost > 0) {
+        lines.push({
+          label: `${lang === 'si' ? 'Data Entry සේවාව' : 'Ledger Data Entry'} (${dataEntryDays} ${lang === 'si' ? 'දින' : 'days'})`,
+          amount: dataEntryCost
+        });
+      }
+
+      if (transportCost > 0) {
+        lines.push({
+          label: `${lang === 'si' ? 'ප්‍රවාහන ගාස්තුව' : 'Travel Distance'} (${transportKm} km)`,
+          amount: transportCost
+        });
+      }
+
+      if (hwOpt === 'referral') {
+        lines.push({
+          label: lang === 'si' ? 'Hardware: Vendor සැබෑ මිලට (වෙනම එකතු වේ)' : 'Hardware: Genuine Vendor Rate (Invoiced Separately)',
+          amount: 0
+        });
+      }
+
+      if (lineItemsContainer) {
+        lineItemsContainer.innerHTML = lines.map(line => `
+          <div class="line-row">
+            <span class="line-label">${line.label}</span>
+            <span class="line-val">${line.amount > 0 ? 'LKR ' + line.amount.toLocaleString('en-US') : (lang === 'si' ? 'නොමිලේ / අදාළ නොවේ' : 'N/A')}</span>
+          </div>
+        `).join('');
+      }
+
+      // Update WhatsApp Deep Link
+      if (btnWa) {
+        const client = custName.value.trim() || (lang === 'si' ? 'පාරිභෝගිකයා' : 'Prospective Client');
+        const biz = custBusiness.value.trim() ? ` (${custBusiness.value.trim()})` : '';
+        const waMsg = lang === 'si'
+          ? `හෙලෝ 20Scale, මම ${client}${biz}. මම වෙබ් අඩවියේ Calculator එකෙන් මෙම POS Quotation එක සකසා ගත්තෙමි:\n- පැකේජය: ${pkgName}\n- Counters: ${stations}\n- ශාඛා: ${branches}\n- මුළු ඇස්තමේන්තුව: LKR ${total.toLocaleString('en-US')}\n- නගරය: ${custCity.value.trim() || 'Not specified'}\nකරුණාකර මේ ගැන වැඩිදුර විස්තර ලබාදෙන්න.`
+          : `Hello 20Scale, I am ${client}${biz}. I generated this POS quote on your website calculator:\n- Package: ${pkgName}\n- Counters: ${stations}\n- Branches: ${branches}\n- Total Estimate: LKR ${total.toLocaleString('en-US')}\n- City: ${custCity.value.trim() || 'Not specified'}\nPlease advise on next steps.`;
+        
+        btnWa.href = `https://wa.me/${whatsappNum.replace(/\+/g, '')}?text=${encodeURIComponent(waMsg)}`;
+      }
+
+      // Update Print Sheet values
+      const printDateEl = document.getElementById('print-date');
+      const printClientName = document.getElementById('print-client-name');
+      const printClientBiz = document.getElementById('print-client-biz');
+      const printClientPhone = document.getElementById('print-client-phone');
+      const printClientCity = document.getElementById('print-client-city');
+      const printClientType = document.getElementById('print-client-type');
+      const printTableBody = document.getElementById('print-table-body');
+      const printTotalEl = document.getElementById('print-total');
+
+      if (printDateEl) printDateEl.textContent = new Date().toLocaleDateString();
+      if (printClientName) printClientName.textContent = custName.value.trim() || 'Client';
+      if (printClientBiz) printClientBiz.textContent = custBusiness.value.trim() || '-';
+      if (printClientPhone) printClientPhone.textContent = custPhone.value.trim() || '-';
+      if (printClientCity) printClientCity.textContent = custCity.value.trim() || '-';
+      if (printClientType) printClientType.textContent = custType.value || '-';
+
+      if (printTableBody) {
+        printTableBody.innerHTML = lines.map(line => `
+          <tr>
+            <td>${line.label}</td>
+            <td style="text-align: right;">${line.amount > 0 ? 'LKR ' + line.amount.toLocaleString('en-US') : '-'}</td>
+          </tr>
+        `).join('');
+      }
+
+      if (printTotalEl) {
+        printTotalEl.textContent = `LKR ${total.toLocaleString('en-US')}`;
+      }
+    }
+
+    // Trigger Initial Calculation
+    recalculate();
+
+    // Handle Print Output
+    if (btnPrint) {
+      btnPrint.addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    // Handle Order Request Submission Output
+    if (btnOrder) {
+      btnOrder.addEventListener('click', () => {
+        const nameVal = custName.value.trim();
+        const phoneVal = custPhone.value.trim();
+
+        if (!nameVal || !phoneVal) {
+          alert(lang === 'si' ? 'කරුණාකර ඔබගේ නම සහ දුරකථන අංකය ඇතුළත් කරන්න.' : 'Please enter your Name and Phone / WhatsApp number.');
+          custPhone.focus();
+          return;
+        }
+
+        if (orderStatus) {
+          orderStatus.style.display = 'block';
+          orderStatus.className = 'status-msg status-success';
+          orderStatus.innerHTML = lang === 'si'
+            ? `<strong>ස්තූතියි ${nameVal}!</strong> ඔබගේ ඇණවුම් ඉල්ලීම සටහන් කරගන්නා ලදී. අපගේ තාක්ෂණික කණ්ඩායම පැය කිහිපයක් ඇතුළත ඔබගේ දුරකථන අංකයට (${phoneVal}) කතා කර වැඩිදුර තොරතුරු සහතික කරනු ඇත.`
+            : `<strong>Thank you ${nameVal}!</strong> Your order request has been recorded. Our team will contact you shortly on ${phoneVal} to verify requirements and arrange discovery.`;
+        }
+      });
+    }
+  })();
+</script>
+
+<style>
+  .calc-section {
+    padding: 5.5rem 1.25rem 6rem;
+    position: relative;
+  }
+
+  .calc-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* Grid layout: Form on Left, Sticky Summary on Right */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .calc-grid {
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
+
+  /* Form panel */
+  .calc-form-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2rem 1.75rem;
+  }
+
+  .form-step {
+    border: none;
+    margin: 0 0 2rem;
+    padding: 0 0 1.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .step-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #00030B;
+    font-size: 0.8125rem;
+    font-weight: 800;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-field label {
+    font-size: 0.835rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.65rem 0.875rem;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--color-primary);
+  }
+
+  /* Package Radio Selector */
+  .package-selector {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  @media (min-width: 640px) {
+    .package-selector {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .pkg-radio-label {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .pkg-radio-label input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .radio-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .pkg-radio-label:hover .radio-card {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .pkg-radio-label.active .radio-card {
+    border-color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.05);
+    box-shadow: 0 0 16px rgba(0, 229, 229, 0.15);
+  }
+
+  .card-radio-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .radio-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .radio-tag {
+    font-size: 0.6875rem;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+  }
+
+  .radio-price {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-top: 0.25rem;
+  }
+
+  .radio-sub {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Steppers */
+  .field-label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .field-hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .stepper-wrap {
+    display: flex;
+    align-items: center;
+    max-width: 140px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .btn-stepper {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    width: 40px;
+    height: 38px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-stepper:hover {
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .stepper-wrap input {
+    width: 60px;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--color-primary);
+  }
+
+  /* Hardware & Checkboxes */
+  .hardware-selection,
+  .extras-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .checkbox-container:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .checkbox-container input {
+    margin-top: 0.2rem;
+  }
+
+  .checkbox-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.8875rem;
+    color: var(--color-text);
+  }
+
+  .checkbox-text small {
+    font-size: 0.785rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  .extra-input-row {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .days-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .days-input-wrap input {
+    max-width: 90px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.4rem 0.65rem;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+
+  .days-hint {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Summary sticky panel */
+  .calc-summary-panel {
+    position: sticky;
+    top: 84px;
+  }
+
+  .summary-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2rem 1.75rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .estimate-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.line-row) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  :global(.line-label) {
+    color: var(--color-text-muted);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  :global(.line-val) {
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .summary-total-box {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .total-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .total-amount {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.1;
+    text-shadow: 0 0 20px rgba(0, 229, 229, 0.25);
+  }
+
+  .hosting-recurring-note {
+    font-size: 0.775rem;
+    color: var(--color-warning);
+    margin-top: 0.5rem;
+  }
+
+  .summary-disclaimer {
+    font-size: 0.785rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-action-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: var(--color-primary);
+    color: #00030B;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-action-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 229, 229, 0.4);
+  }
+
+  .btn-action-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: #00030B;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-action-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  }
+
+  .btn-action-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-action-secondary:hover {
+    background: var(--color-surface-alt);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .action-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .status-msg {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    font-size: 0.835rem;
+    line-height: 1.5;
+  }
+
+  .status-success {
+    background: rgba(61, 220, 151, 0.12);
+    border: 1px solid var(--color-success);
+    color: var(--color-text);
+  }
+
+  /* ----------------------------------------------------
+     Print View Styling (Screen Hidden, Only for Print/PDF)
+     ---------------------------------------------------- */
+  .printable-sheet {
+    display: none;
+  }
+
+  @media print {
+    /* Hide everything else on print */
+    :global(body > *),
+    :global(header),
+    :global(footer),
+    :global(.whatsapp-widget),
+    .calc-form-panel,
+    .section-header,
+    .summary-actions,
+    .pricing-hero,
+    .packages-section,
+    .breakdown-section,
+    .faq-section {
+      display: none !important;
+    }
+
+    .printable-sheet {
+      display: block !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff !important;
+      color: #111827 !important;
+      padding: 2.5rem;
+      font-family: Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+
+    .print-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid #000;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .print-brand h1 {
+      font-size: 22pt;
+      margin: 0 0 0.25rem;
+      color: #000;
+    }
+
+    .print-meta {
+      text-align: right;
+    }
+
+    .print-meta h2 {
+      font-size: 14pt;
+      margin: 0 0 0.5rem;
+      color: #027887;
+    }
+
+    .print-client {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+
+    .print-client h3 {
+      font-size: 12pt;
+      margin-bottom: 0.5rem;
+    }
+
+    .print-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2.5rem;
+    }
+
+    .print-table th,
+    .print-table td {
+      border: 1px solid #d1d5db;
+      padding: 0.65rem 0.85rem;
+    }
+
+    .print-table th {
+      background: #f3f4f6;
+    }
+
+    .print-table tfoot th {
+      background: #e5e7eb;
+      font-size: 13pt;
+    }
+
+    .print-exclusions {
+      border-top: 1px solid #9ca3af;
+      padding-top: 1rem;
+      font-size: 9pt;
+      color: #4b5563;
+    }
+
+    .print-exclusions h4 {
+      font-size: 10pt;
+      color: #111827;
+      margin-bottom: 0.4rem;
+    }
+
+    .print-exclusions ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-action-primary,
+    .btn-action-wa,
+    .btn-action-secondary,
+    .radio-card {
+      transition: none !important;
+    }
+  }
+</style>

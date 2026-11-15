@@ -1,0 +1,240 @@
+---
+import servicesData from '../../../content/services.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const solutions = servicesData.solutions;
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section class="solutions-list-section" aria-labelledby="all-solutions-heading">
+  <div class="solutions-list-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'අප ලබාදෙන විසඳුම්' : 'What We Build'}
+      </span>
+      <h2 id="all-solutions-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ව්‍යාපාර මෙහෙයුම් ස්වයංක්‍රීය කරන <span class="text-cyan">ප්‍රධාන පද්ධති</span>
+          </>
+        ) : (
+          <>
+            Specialized Systems Engineered for <span class="text-cyan">High Operational Efficiency</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {lang === 'si'
+          ? 'සෑම පද්ධතියක්ම ඔබගේ ව්‍යාපාරයේ දෛනික වැඩපිළිවෙල, ගිණුම්කරණය සහ සේවක භාවිතය අනුව විශේෂයෙන් ගොඩනගනු ලැබේ.'
+          : 'Each system is architected around how your business really functions, ensuring frictionless daily adoption.'}
+      </p>
+    </div>
+
+    <div class="solutions-grid">
+      {solutions.map((sol, idx) => (
+        <article class="solution-item-card">
+          <div class="card-num" aria-hidden="true">0{idx + 1}</div>
+          <div class="card-body">
+            <div class="card-top">
+              <h3 class="sol-title">{sol.name[lang]}</h3>
+              <div class="deployment-pills">
+                {sol.deployment.map((dep) => (
+                  <span class="dep-pill">{dep}</span>
+                ))}
+              </div>
+            </div>
+            <p class="sol-desc">{sol.summary[lang]}</p>
+            <div class="sol-action-row">
+              <a href={`${prefix}/pricing#quote-calculator`} class="sol-cta">
+                <span>{lang === 'si' ? 'Quote එකක් ගණනය කරන්න' : 'Calculate Estimate'}</span>
+                <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions-list-section {
+    padding: 5rem 1.25rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .solutions-list-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .solutions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .solutions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .solution-item-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .solution-item-card:hover {
+    border-color: rgba(0, 229, 229, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .card-num {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-primary-muted);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-top {
+    margin-bottom: 0.875rem;
+  }
+
+  .sol-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .deployment-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .dep-pill {
+    font-size: 0.6875rem;
+    text-transform: capitalize;
+    background: rgba(18, 40, 58, 0.6);
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 229, 229, 0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+  }
+
+  .sol-desc {
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    flex: 1;
+  }
+
+  .sol-action-row {
+    margin-top: auto;
+  }
+
+  .sol-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .sol-cta:hover {
+    color: var(--color-text);
+  }
+
+  .cta-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+  }
+
+  .sol-cta:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solution-item-card,
+    .sol-cta,
+    .cta-arrow {
+      transition: none !important;
+    }
+  }
+</style>

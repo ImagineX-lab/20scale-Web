@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProcessDetailed from '../../components/process/ProcessDetailed.astro';
+import ContactCta from '../../components/home/ContactCta.astro';
+
+const lang = 'en' as const;
+const title = 'Our Process, SLAs & Support Policy | 20Scale Solutions';
+const description = 'Our transparent 6-step build process, free hands-on training, 30-minute rapid response SLA, and warranty boundaries.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <ProcessDetailed lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AboutContent from '../../components/about/AboutContent.astro';
+import ContactCta from '../../components/home/ContactCta.astro';
+
+const lang = 'en' as const;
+const title = 'About Us | 20Scale Solutions';
+const description = 'Bridging heavy enterprise technology and ground retail reality with high-performance, offline-first systems across Sri Lanka.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <AboutContent lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

@@ -1,0 +1,213 @@
+---
+import servicesData from '../../../content/services.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const industries = servicesData.industries;
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section class="industries-section" aria-labelledby="industries-heading">
+  <div class="industries-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'ක්ෂේත්‍ර ප්‍රවීණතාව' : 'Industry Expertise'}
+      </span>
+      <h2 id="industries-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            විවිධ ව්‍යාපාර සඳහා විශේෂිත <span class="text-cyan">ක්ෂේත්‍ර විසඳුම්</span>
+          </>
+        ) : (
+          <>
+            Targeted Systems Designed for <span class="text-cyan">Specific Business Verticals</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {lang === 'si'
+          ? 'හාඩ්වෙයාර් වෙළඳසැල්වල සිට පාසල් දක්වා සෑම ව්‍යාපාරයකටම ආවේණික වූ ගැටලුවලට සැබෑ විසඳුම්.'
+          : 'Every retail and service category has unique inventory and billing complexities. Here is how our architecture addresses them.'}
+      </p>
+    </div>
+
+    <div class="industries-grid">
+      {industries.map((ind) => (
+        <div class="industry-card">
+          <div class="ind-header">
+            <h3 class="ind-name">{ind.name[lang]}</h3>
+          </div>
+          <div class="pain-box">
+            <span class="pain-label">{lang === 'si' ? 'ප්‍රධාන අභියෝගය:' : 'Primary Friction:'}</span>
+            <p class="pain-text">{ind.pain[lang]}</p>
+          </div>
+          <div class="ind-footer">
+            <a href={`${prefix}/contact`} class="ind-cta">
+              <span>{lang === 'si' ? 'විසඳුම සාකච්ඡා කරන්න' : 'Consult for Solution'}</span>
+              <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .industries-section {
+    padding: 5.5rem 1.25rem 6rem;
+    position: relative;
+  }
+
+  .industries-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .industries-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .industries-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .industry-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .industry-card:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .ind-name {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.35;
+  }
+
+  .pain-box {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pain-label {
+    display: block;
+    font-size: 0.725rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-danger);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  .pain-text {
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .ind-footer {
+    margin-top: auto;
+  }
+
+  .ind-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.835rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    transition: color 0.2s;
+  }
+
+  .ind-cta:hover {
+    color: var(--color-text);
+  }
+
+  .cta-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s;
+  }
+
+  .ind-cta:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .industry-card,
+    .ind-cta,
+    .cta-arrow {
+      transition: none !important;
+    }
+  }
+</style>

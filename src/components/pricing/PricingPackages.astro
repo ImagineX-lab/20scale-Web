@@ -1,0 +1,378 @@
+---
+import pricingData from '../../../content/pricing.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const packages = pricingData.packages;
+---
+
+<section class="packages-section" aria-labelledby="packages-heading">
+  <div class="packages-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'මූලික පැකේජ' : 'Core Software Packages'}
+      </span>
+      <h2 id="packages-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ඔබේ ව්‍යාපාරයේ පරිමාණයට ගැලපෙන <span class="text-cyan">ආරම්භක පැකේජ</span>
+          </>
+        ) : (
+          <>
+            Base Deployment Packages <span class="text-cyan">Built to Scale</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {lang === 'si'
+          ? 'සෑම පැකේජයකම මූලික මිල පහත දැක්වේ. කැමති පැකේජයක් තෝරා පහත Calculator එක මගින් අවශ්‍ය පරිදි customize කරගත හැක.'
+          : 'All packages include core development, database setup, and user manual. Select a package below to customize stations, branches, and hardware in the calculator.'}
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="packages-grid">
+      {packages.map((pkg) => (
+        <div class:list={['pkg-card', { 'pkg-featured': pkg.id === 'desktop' }]}>
+          {pkg.id === 'desktop' && (
+            <div class="featured-badge">
+              {lang === 'si' ? 'වඩාත් නිර්දේශිත (100% Offline)' : 'Most Recommended (100% Offline)'}
+            </div>
+          )}
+
+          <div class="pkg-header">
+            <span class="pkg-type-pill">
+              {pkg.id === 'desktop'
+                ? (lang === 'si' ? 'Offline Standalone' : 'Offline Standalone')
+                : pkg.id === 'cloud'
+                ? (lang === 'si' ? 'Cloud Hosted' : 'Cloud Hosted')
+                : (lang === 'si' ? 'Offline + Cloud Sync' : 'Offline + Cloud Sync')}
+            </span>
+            <h3 class="pkg-name">{pkg.name[lang]}</h3>
+            
+            <div class="price-box">
+              <span class="currency">LKR</span>
+              <span class="price-val">{pkg.price.toLocaleString('en-US')}</span>
+              <span class="term">/{pkg.billing}</span>
+            </div>
+
+            {pkg.recurring ? (
+              <p class="recurring-pill">
+                + LKR {pkg.recurring.amount.toLocaleString('en-US')} / {pkg.recurring.period} ({pkg.recurring.label})
+              </p>
+            ) : (
+              <p class="no-recurring-pill">
+                {lang === 'si' ? 'නැවත ගෙවන ගාස්තු නැත (Zero Renewal)' : 'Zero Recurring Fees'}
+              </p>
+            )}
+          </div>
+
+          <div class="card-divider"></div>
+
+          <ul class="features-list" role="list">
+            {pkg.bullets.map((b) => (
+              <li class="feature-item">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>{b[lang]}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="card-action">
+            <a href={`#quote-calculator`} data-select-package={pkg.id} class={pkg.id === 'desktop' ? 'btn-select-featured' : 'btn-select'}>
+              {lang === 'si' ? 'මෙම පැකේජය තෝරන්න' : 'Select in Calculator'}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Notes & Refund Policy Note -->
+    <div class="policy-note">
+      <div class="policy-item">
+        <strong>{lang === 'si' ? 'මූලික ඇස්තමේන්තුව:' : 'Scope Estimation:'}</strong>
+        <span>
+          {lang === 'si'
+            ? 'මෙහි පෙන්වා ඇති මිල ගණන් මූලික ආරම්භක මිල වේ. අවසාන මිල ව්‍යාපාරයේ අවශ්‍යතා සහ එකඟ වූ වැඩ ප්‍රමාණය අනුව තහවුරු කරනු ලැබේ.'
+            : 'Displayed rates are proposed starting benchmarks. The final contract price is confirmed after reviewing your shop floor scope.'}
+        </span>
+      </div>
+      <div class="policy-item">
+        <strong>{lang === 'si' ? 'මුදල් ආපසු ගෙවීම (Refund):' : 'Refund Policy:'}</strong>
+        <span>{pricingData.refund[lang]}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .packages-section {
+    padding: 5rem 1.25rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .packages-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .packages-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .pkg-card {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2.25rem 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .pkg-card:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .pkg-featured {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 28px rgba(0, 229, 229, 0.15);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: #00030B;
+    font-size: 0.725rem;
+    font-weight: 700;
+    padding: 0.25rem 0.85rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  .pkg-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .pkg-type-pill {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(18, 40, 58, 0.6);
+    color: var(--color-text-muted);
+    padding: 0.15rem 0.65rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 0.75rem;
+  }
+
+  .pkg-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .price-box {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .currency {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .price-val {
+    font-family: var(--font-heading);
+    font-size: 2.35rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .term {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .recurring-pill {
+    font-size: 0.785rem;
+    color: var(--color-warning);
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+
+  .no-recurring-pill {
+    font-size: 0.785rem;
+    color: var(--color-success);
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+
+  .card-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .card-action {
+    margin-top: auto;
+  }
+
+  .btn-select-featured {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--color-primary);
+    color: #00030B;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-select-featured:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 229, 229, 0.4);
+  }
+
+  .btn-select {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-pill);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .btn-select:hover {
+    background: var(--color-surface-alt);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .policy-note {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .policy-item strong {
+    color: var(--color-text);
+    margin-right: 0.35rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pkg-card,
+    .btn-select-featured,
+    .btn-select {
+      transition: none !important;
+    }
+  }
+</style>

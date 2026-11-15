@@ -1,0 +1,322 @@
+---
+import companyData from '../../../content/company.json';
+import siteData from '../../../content/site.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tagline = companyData.tagline[lang] || siteData.brand.tagline[lang];
+const description = siteData.brand.description[lang];
+const deliveredCount = companyData.deliveredProjects?.count;
+const deliveredType = companyData.deliveredProjects?.type;
+
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section class="hero-section" aria-labelledby="hero-heading">
+  <div class="hero-glow" aria-hidden="true"></div>
+  
+  <div class="hero-container">
+    <!-- Verified Status Pill -->
+    <div class="hero-badge-wrap">
+      <div class="hero-pill">
+        <span class="pill-dot"></span>
+        <span class="pill-text">
+          {lang === 'si' ? 'ශ්‍රී ලංකාවේ ව්‍යාපාර සඳහා නිර්මිතයි' : 'Built for Businesses in Sri Lanka'}
+        </span>
+      </div>
+    </div>
+
+    <!-- Main Headline -->
+    <h1 id="hero-heading" class="hero-title">
+      {lang === 'si' ? (
+        <>
+          ඔබේ ව්‍යාපාරය <span class="text-cyan">ඉදිරියට ගෙනයන</span> මෘදුකාංග විසඳුම්
+        </>
+      ) : (
+        <>
+          Enterprise Software. <span class="text-cyan">Built to Scale.</span>
+        </>
+      )}
+    </h1>
+
+    <!-- Subtitle / Value Proposition -->
+    <p class="hero-description">
+      {description}
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-actions">
+      <a href={`${prefix}/pricing`} class="btn-primary">
+        <span>{lang === 'si' ? 'මිල ගණන් සහ පැකේජ බලන්න' : 'View Pricing & Packages'}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="btn-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+
+      <a href={`${prefix}/solutions`} class="btn-secondary">
+        {lang === 'si' ? 'අපගේ විසඳුම්' : 'Explore Solutions'}
+      </a>
+    </div>
+
+    <!-- Honest Verified Fact Highlights -->
+    <div class="hero-highlights" role="list">
+      <div class="highlight-item" role="listitem">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="highlight-title">100% Offline-First</h2>
+          <p class="highlight-sub">
+            {lang === 'si' ? 'අන්තර්ජාලය නැතිව බාධාවකින් තොරව ක්‍රියා කරයි' : 'Runs smoothly with zero internet dependency'}
+          </p>
+        </div>
+      </div>
+
+      {deliveredCount && (
+        <div class="highlight-item" role="listitem">
+          <div class="highlight-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="highlight-title">{deliveredCount} {lang === 'si' ? 'ස්ථාපිත ව්‍යාපෘති' : 'Delivered Projects'}</h2>
+            <p class="highlight-sub">
+              {lang === 'si' ? 'සත්‍යාපිත POS පද්ධති (Retail / Stores)' : `Verified ${deliveredType} deployments`}
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div class="highlight-item" role="listitem">
+        <div class="highlight-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="highlight-title">{lang === 'si' ? 'දිවයින පුරා සේවාව' : 'Island-wide Service'}</h2>
+          <p class="highlight-sub">
+            {lang === 'si' ? 'ඔබේ ව්‍යාපාරික ස්ථානයටම පැමිණ install කිරීම' : 'On-site discovery, setup and staff training'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 4.5rem 1.25rem 5rem;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(0, 229, 229, 0.14) 0%, rgba(2, 120, 135, 0.05) 50%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  .hero-container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .hero-badge-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(7, 16, 28, 0.85);
+    border: 1px solid var(--color-border);
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .pill-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-primary);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+    text-shadow: 0 0 28px rgba(0, 229, 229, 0.3);
+  }
+
+  .hero-description {
+    font-size: clamp(1rem, 2vw, 1.175rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: #00030B;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-pill);
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(0, 229, 229, 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(0, 229, 229, 0.5);
+  }
+
+  .btn-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s;
+  }
+
+  .btn-primary:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-surface-alt);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .hero-highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 950px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .hero-highlights {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    background: rgba(7, 16, 28, 0.6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.25rem;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.2s;
+  }
+
+  .highlight-item:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .highlight-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 229, 229, 0.1);
+    color: var(--color-primary);
+    border-radius: 8px;
+  }
+
+  .highlight-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .highlight-title {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.2rem;
+  }
+
+  .highlight-sub {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .btn-secondary,
+    .btn-arrow,
+    .highlight-item {
+      transition: none !important;
+    }
+  }
+</style>

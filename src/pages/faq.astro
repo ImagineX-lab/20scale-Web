@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqFullList from '../components/faq/FaqFullList.astro';
+import ContactCta from '../components/home/ContactCta.astro';
+import { getLang } from '../i18n/index';
+
+const lang = getLang(Astro.url); // 'si'
+const title = 'නිතර අසන ප්‍රශ්න (FAQ) | 20Scale Solutions';
+const description = 'මෘදුකාංග පද්ධති, මිල ගණන්, Offline ක්‍රියාකාරිත්වය, Hardware සහ සේවක පුහුණුව පිළිබඳ ප්‍රශ්න හා පිළිතුරු.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <FaqFullList lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

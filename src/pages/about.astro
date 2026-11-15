@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutContent from '../components/about/AboutContent.astro';
+import ContactCta from '../components/home/ContactCta.astro';
+import { getLang } from '../i18n/index';
+
+const lang = getLang(Astro.url); // 'si'
+const title = 'අප ගැන | 20Scale Solutions';
+const description = 'ශ්‍රී ලංකාවේ ව්‍යාපාරික අවශ්‍යතා සඳහා Offline-First මෘදුකාංග ඉංජිනේරු විසඳුම් ගොඩනගන 20Scale කණ්ඩායම.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <AboutContent lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

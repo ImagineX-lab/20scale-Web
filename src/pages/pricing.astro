@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PricingHero from '../components/pricing/PricingHero.astro';
+import PricingPackages from '../components/pricing/PricingPackages.astro';
+import PricingBreakdownExplainer from '../components/pricing/PricingBreakdownExplainer.astro';
+import InteractiveCalculator from '../components/pricing/InteractiveCalculator.astro';
+import PricingFaq from '../components/pricing/PricingFaq.astro';
+import ContactCta from '../components/home/ContactCta.astro';
+import { getLang } from '../i18n/index';
+
+const lang = getLang(Astro.url); // 'si'
+const title = 'මිල ගණන් සහ Quote Calculator | 20Scale Solutions';
+const description = 'සැඟවුණු ගාස්තු නැති විනිවිද මිල ගණන්. Desktop, Cloud සහ Hybrid POS පද්ධති සඳහා interactive quotation calculator.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <PricingHero lang={lang} />
+  <PricingPackages lang={lang} />
+  <PricingBreakdownExplainer lang={lang} />
+  <InteractiveCalculator lang={lang} />
+  <PricingFaq lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

@@ -1,0 +1,433 @@
+---
+import processData from '../../../content/process-support.json';
+import companyData from '../../../content/company.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const steps = processData.process;
+const channels = processData.support.channels;
+const freeItems = processData.freeIncluded;
+const exclusions = processData.exclusions.items;
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section class="process-detailed-section" aria-labelledby="process-detail-heading">
+  <div class="process-detailed-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'ව්‍යාපෘති ක්‍රියාවලිය' : 'Our Engineering Framework'}
+      </span>
+      <h1 id="process-detail-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            අදහසේ සිට සක්‍රීය පද්ධතිය දක්වා <span class="text-cyan">පැහැදිලි පියවර 6</span>
+          </>
+        ) : (
+          <>
+            From Ground Discovery to Handover: <span class="text-cyan">How We Build Your System</span>
+          </>
+        )}
+      </h1>
+      <p class="section-sub">
+        {lang === 'si'
+          ? 'අපගේ සෑම පියවරක්ම ඔබගේ ව්‍යාපාරික කටයුතුවලට බාධා නොවන ලෙස විනිවිදව සහ විශ්වාසදායකව සැලසුම් කර ඇත.'
+          : 'A disciplined, transparent delivery framework engineered to minimize operational friction.'}
+      </p>
+    </div>
+
+    <!-- 6 Milestone Detailed Cards -->
+    <div class="steps-flow">
+      {steps.map((st) => (
+        <div class="step-flow-item">
+          <div class="step-flow-number">
+            <span>0{st.step}</span>
+          </div>
+          <div class="step-flow-content">
+            <h2 class="step-flow-title">{st.title[lang]}</h2>
+            <p class="step-flow-text">{st.text[lang]}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Timeline & Included Benefits Grid -->
+    <div class="process-extra-grid">
+      <!-- Included for Free -->
+      <div class="info-card">
+        <h2 class="info-card-title">
+          <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          {lang === 'si' ? 'නොමිලේ ලැබෙන දේ (Free & Included)' : 'Always Included Free'}
+        </h2>
+        <ul class="info-list">
+          {freeItems.map((fi) => (
+            <li class="info-list-item">
+              <span class="bullet-dot"></span>
+              <span>{fi[lang]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Support SLA & Channels -->
+      <div class="info-card">
+        <h2 class="info-card-title">
+          <svg class="info-icon text-cyan" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+          </svg>
+          {lang === 'si' ? 'තාක්ෂණික සහාය සහ විනාඩි 30ක SLA' : 'Support Channels & 30-Min SLA'}
+        </h2>
+        <p class="sla-quote">
+          "{processData.sla.criticalIssueResponse[lang]}"
+        </p>
+        <ul class="info-list">
+          {channels.map((ch) => (
+            <li class="info-list-item">
+              <span class="bullet-dot"></span>
+              <span>{ch.name[lang]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Data Migration & Handover -->
+    <div class="policy-grid">
+      <div class="policy-box">
+        <h2 class="policy-title">{lang === 'si' ? 'පැරණි දත්ත මාරු කිරීම (Data Migration)' : 'Data Migration Policy'}</h2>
+        <p class="policy-desc">
+          <strong>Digital Data:</strong> {processData.dataMigration.digitalData[lang]}
+        </p>
+        <p class="policy-desc">
+          <strong>Paper Books:</strong> {processData.dataMigration.paperRecords[lang]}
+        </p>
+      </div>
+
+      <div class="policy-box">
+        <h2 class="policy-title">{lang === 'si' ? 'සම්පූර්ණ භාරදීම (Full Handover)' : 'Full Handover'}</h2>
+        <p class="policy-desc">
+          {processData.handover.text[lang]}
+        </p>
+        <p class="policy-desc" style="color: var(--color-warning);">
+          *{processData.handover.exceptions}
+        </p>
+      </div>
+    </div>
+
+    <!-- Mandatory Exclusions Box (Rule 11) -->
+    <div class="exclusions-box">
+      <div class="exclusions-header">
+        <svg class="warning-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </svg>
+        <h2 class="exclusions-title">{processData.exclusions.title[lang]}</h2>
+      </div>
+      <p class="exclusions-sub">
+        {lang === 'si'
+          ? 'විනිවිදභාවය තහවුරු කිරීම සඳහා, පහත සඳහන් කරුණු නොමිලේ software warranty එකට අයිති නොවන බව කරුණාවෙන් සලකන්න:'
+          : 'For absolute transparency, please note the operational boundaries not covered under free software maintenance:'}
+      </p>
+      <div class="exclusions-list">
+        {exclusions.map((item) => (
+          <div class="exclusion-card">
+            <span class="excl-dot">•</span>
+            <p>{item.text[lang]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-detailed-section {
+    padding: 4.5rem 1.25rem 6rem;
+    position: relative;
+  }
+
+  .process-detailed-container {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 4rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .steps-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .step-flow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .step-flow-item:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .step-flow-number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-flow-content {
+    flex: 1;
+  }
+
+  .step-flow-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .step-flow-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  .process-extra-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .process-extra-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .info-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2rem 1.75rem;
+  }
+
+  .info-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .info-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--color-success);
+    flex-shrink: 0;
+  }
+
+  .sla-quote {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.08);
+    border-left: 3px solid var(--color-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .info-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .bullet-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .policy-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .policy-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .policy-box {
+    background: rgba(7, 16, 28, 0.7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+  }
+
+  .policy-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.875rem;
+  }
+
+  .policy-desc {
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-desc strong {
+    color: var(--color-text);
+  }
+
+  /* Exclusions Box (Rule 11) */
+  .exclusions-box {
+    background: rgba(11, 23, 38, 0.8);
+    border: 1px solid rgba(255, 184, 77, 0.4);
+    border-radius: var(--radius-card);
+    padding: 2.25rem 2rem;
+  }
+
+  .exclusions-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .warning-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-warning);
+    flex-shrink: 0;
+  }
+
+  .exclusions-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .exclusions-sub {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .exclusions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .exclusion-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.8875rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    background: rgba(0, 3, 11, 0.5);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+
+  .excl-dot {
+    color: var(--color-warning);
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .step-flow-item {
+      transition: none !important;
+    }
+  }
+</style>

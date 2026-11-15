@@ -1,0 +1,184 @@
+---
+import servicesData from '../../../content/services.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const prefix = lang === 'en' ? '/en' : '';
+---
+
+<section class="solutions-hero" aria-labelledby="solutions-hero-heading">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-container">
+    <div class="badge-wrap">
+      <span class="hero-badge">
+        {lang === 'si' ? 'ව්‍යාපාරික මෘදුකාංග විසඳුම්' : 'Tailored Enterprise Solutions'}
+      </span>
+    </div>
+
+    <h1 id="solutions-hero-heading" class="hero-title">
+      {lang === 'si' ? (
+        <>
+          ඔබේ ව්‍යාපාරයේ ස්වභාවයටම <span class="text-cyan">නිර්මාණය කළ පද්ධති</span>
+        </>
+      ) : (
+        <>
+          Custom-Engineered Software. <span class="text-cyan">Zero Generic Compromises.</span>
+        </>
+      )}
+    </h1>
+
+    <p class="hero-desc">
+      {servicesData.positioning[lang]}
+    </p>
+
+    <!-- 3 Deployment Architectures Bar -->
+    <div class="deployments-bar" role="list">
+      {servicesData.deploymentOptions.map((opt) => (
+        <div class="deploy-card" role="listitem">
+          <div class="deploy-header">
+            <span class="deploy-tag">
+              {opt.offline ? (lang === 'si' ? '100% Offline' : '100% Offline') : 'Cloud'}
+            </span>
+            <h3 class="deploy-name">{opt.name[lang]}</h3>
+          </div>
+          <p class="deploy-summary">{opt.summary[lang]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions-hero {
+    position: relative;
+    padding: 4.5rem 1.25rem 3.5rem;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 229, 229, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  .hero-container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .badge-wrap {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(0, 229, 229, 0.2);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+    text-shadow: 0 0 28px rgba(0, 229, 229, 0.3);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+
+  .deployments-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .deployments-bar {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .deploy-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.5rem 1.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .deploy-card:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .deploy-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .deploy-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
+    background: rgba(0, 229, 229, 0.12);
+    color: var(--color-primary);
+  }
+
+  .deploy-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .deploy-summary {
+    font-size: 0.865rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deploy-card {
+      transition: none !important;
+    }
+  }
+</style>

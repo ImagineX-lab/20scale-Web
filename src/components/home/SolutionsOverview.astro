@@ -1,0 +1,346 @@
+---
+import servicesData from '../../../content/services.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const prefix = lang === 'en' ? '/en' : '';
+
+const deploymentOptions = servicesData.deploymentOptions;
+const featuredSolutions = servicesData.solutions.slice(0, 6);
+const industries = servicesData.industries.slice(0, 8);
+---
+
+<section class="solutions-section" aria-labelledby="solutions-heading">
+  <div class="solutions-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'විසඳුම් සහ තාක්ෂණය' : 'Solutions & Deployments'}
+      </span>
+      <h2 id="solutions-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ඔබේ ව්‍යාපාරයේ ස්වභාවයට ගැලපෙන <span class="text-cyan">මෘදුකාංග පද්ධති</span>
+          </>
+        ) : (
+          <>
+            Tailored Software Systems <span class="text-cyan">Built Around Your Operations</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {servicesData.positioning[lang]}
+      </p>
+    </div>
+
+    <!-- Deployment Options Pill Bar -->
+    <div class="deployments-grid">
+      {deploymentOptions.map((opt) => (
+        <div class="deployment-card">
+          <div class="deploy-header">
+            <span class="deploy-badge">
+              {opt.offline ? (lang === 'si' ? 'Offline-First' : 'Offline Ready') : 'Cloud'}
+            </span>
+            <h3 class="deploy-name">{opt.name[lang]}</h3>
+          </div>
+          <p class="deploy-summary">{opt.summary[lang]}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Core Solutions Grid -->
+    <div class="solutions-grid">
+      {featuredSolutions.map((sol) => (
+        <div class="solution-card">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-content">
+            <div class="solution-header">
+              <h3 class="solution-title">{sol.name[lang]}</h3>
+              <div class="deployment-tags">
+                {sol.deployment.map((d) => (
+                  <span class="tag-pill">{d}</span>
+                ))}
+              </div>
+            </div>
+            <p class="solution-summary">{sol.summary[lang]}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Industries Served Bar -->
+    <div class="industries-block">
+      <h3 class="industries-label">
+        {lang === 'si' ? 'අපි විශේෂයෙන් සේවා සපයන ක්ෂේත්‍ර:' : 'Key Industries We Build For:'}
+      </h3>
+      <div class="industries-wrap">
+        {industries.map((ind) => (
+          <span class="industry-chip">{ind.name[lang]}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Section CTA -->
+    <div class="section-footer-cta">
+      <a href={`${prefix}/solutions`} class="solutions-cta-btn">
+        <span>{lang === 'si' ? 'සියලු විසඳුම් සහ විස්තර බලන්න' : 'Explore All Solutions & Features'}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="cta-arrow" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions-section {
+    padding: 5.5rem 1.25rem;
+    position: relative;
+  }
+
+  .solutions-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* Deployment modes */
+  .deployments-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .deployments-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .deployment-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .deployment-card:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .deploy-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .deploy-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-pill);
+    background: rgba(0, 229, 229, 0.12);
+    color: var(--color-primary);
+  }
+
+  .deploy-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .deploy-summary {
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  /* Solutions cards */
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .solutions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .solutions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .solution-card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .solution-card:hover {
+    border-color: rgba(0, 229, 229, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .solution-header {
+    margin-bottom: 0.875rem;
+  }
+
+  .solution-title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.625rem;
+    line-height: 1.35;
+  }
+
+  .deployment-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag-pill {
+    font-size: 0.6875rem;
+    text-transform: capitalize;
+    background: rgba(18, 40, 58, 0.6);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .solution-summary {
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Industries */
+  .industries-block {
+    background: rgba(7, 16, 28, 0.7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .industries-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .industries-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .industry-chip {
+    font-size: 0.8125rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .section-footer-cta {
+    text-align: center;
+  }
+
+  .solutions-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .solutions-cta-btn:hover {
+    background: var(--color-primary);
+    color: #00030B;
+    transform: translateY(-2px);
+  }
+
+  .cta-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s;
+  }
+
+  .solutions-cta-btn:hover .cta-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solution-card,
+    .solutions-cta-btn,
+    .cta-arrow {
+      transition: none !important;
+    }
+  }
+</style>

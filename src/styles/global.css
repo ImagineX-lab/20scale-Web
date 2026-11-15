@@ -51,7 +51,7 @@ body {
 }
 
 /* ============================================================
-   Sinhala Language Body Class
+   Sinhala Language Body & Headings
    ============================================================ */
 body.lang-si,
 .lang-si {
@@ -60,16 +60,43 @@ body.lang-si,
   letter-spacing: 0;
 }
 
-/* Latin text within Sinhala pages keeps its own font */
+/* Headings in Sinhala use ExtraBold (800) */
 body.lang-si h1,
 body.lang-si h2,
 body.lang-si h3,
 body.lang-si h4,
 body.lang-si h5,
-body.lang-si h6 {
+body.lang-si h6,
+.lang-si h1,
+.lang-si h2,
+.lang-si h3,
+.lang-si h4,
+.lang-si h5,
+.lang-si h6,
+.lang-si .hero-title,
+.lang-si .section-title,
+.lang-si .problem-card-title,
+.lang-si .solution-title,
+.lang-si .why-title,
+.lang-si .step-title,
+.lang-si .pkg-name,
+.lang-si .faq-question,
+.lang-si .cta-title {
   font-family: var(--font-sinhala);
-  line-height: 1.8;
+  font-weight: 800 !important;
+  line-height: 1.35;
   letter-spacing: 0;
+}
+
+/* Bold / Emphasis text in Sinhala */
+body.lang-si strong,
+body.lang-si b,
+.lang-si strong,
+.lang-si b,
+.lang-si .highlight-title,
+.lang-si .deploy-name {
+  font-family: var(--font-sinhala);
+  font-weight: 800;
 }
 
 /* ============================================================

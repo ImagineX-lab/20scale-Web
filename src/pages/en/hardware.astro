@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HardwareContent from '../../components/hardware/HardwareContent.astro';
+import ContactCta from '../../components/home/ContactCta.astro';
+
+const lang = 'en' as const;
+const title = 'Hardware Sourcing & Vendor Referral | 20Scale Solutions';
+const description = 'Zero-markup POS hardware sourcing. Connect directly with genuine vendors for printers, scanners, and terminals at real trade rates.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <HardwareContent lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FaqFullList from '../../components/faq/FaqFullList.astro';
+import ContactCta from '../../components/home/ContactCta.astro';
+
+const lang = 'en' as const;
+const title = 'Frequently Asked Questions (FAQ) | 20Scale Solutions';
+const description = 'Complete answers regarding offline operations, pricing structures, hardware compatibility, and on-site support.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <FaqFullList lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProcessDetailed from '../components/process/ProcessDetailed.astro';
+import ContactCta from '../components/home/ContactCta.astro';
+import { getLang } from '../i18n/index';
+
+const lang = getLang(Astro.url); // 'si'
+const title = 'අපි වැඩ කරන ආකාරය සහ සහාය (SLA) | 20Scale Solutions';
+const description = 'අපගේ විනිවිද පියවර 6, සේවක පුහුණුව, තාක්ෂණික සහාය සහ විනාඩි 30ක හදිසි ප්‍රතිචාර SLA ගිවිසුම.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <ProcessDetailed lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

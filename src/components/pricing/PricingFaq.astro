@@ -1,0 +1,213 @@
+---
+import pricingData from '../../../content/pricing.json';
+import processData from '../../../content/process-support.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const pricingFaqs = [
+  {
+    q: {
+      si: '20Scale හි මිල ගණන් අනෙක් ආයතනවලට වඩා වෙනස් වන්නේ ඇයි?',
+      en: 'How is 20Scale pricing different from other software providers?'
+    },
+    a: {
+      si: 'අප ඔබට ලබාදෙන්නේ එකම අවංක මුළු මිලක් සහ එය හැදෙන ආකාරයේ සම්පූර්ණ විස්තරයක් පමණි. සැඟවුණු මාසික ගාස්තු, software lock කිරීම් හෝ අනවශ්‍ය service charges කිසිවක් නැත.',
+      en: 'We provide one total price with a complete line-by-line breakdown. There are no surprise monthly subscriptions, software locks, or hidden service fees.'
+    }
+  },
+  {
+    q: {
+      si: 'Desktop පැකේජය සඳහා මාසික හෝ වාර්ෂික ගාස්තු ගෙවිය යුතුද?',
+      en: 'Are there monthly or yearly fees for the Desktop package?'
+    },
+    a: {
+      si: 'නැත! Desktop පැකේජය එක්වරක් පමණක් ගෙවන (one-time) පද්ධතියකි. එය ඔබගේම පරිගණකයේ 100% offline ක්‍රියා කරන බැවින් කිසිදු වාර්ෂික renewal ගාස්තුවක් නැත. Cloud සහ Hybrid පද්ධති සඳහා පමණක් වාර්ෂික server hosting ගාස්තුවක් අදාළ වේ.',
+      en: 'No! The Desktop package is a one-time purchase. It runs 100% locally on your computer with zero monthly or yearly renewal fees. Only Cloud and Hybrid modes require a yearly hosting fee.'
+    }
+  },
+  {
+    q: {
+      si: 'Hardware සඳහා මිල ගණනය කරන්නේ කෙසේද?',
+      en: 'How is hardware pricing handled?'
+    },
+    a: {
+      si: 'අප කිසිදු අමතර ලාභයක් නොතබා, විශ්වාසවන්ත hardware vendor ගේ සැබෑ වෙළඳපල මිලටම ඔබව කෙලින්ම සම්බන්ධ කරමු. ඔබට ඔබ කැමති වෙනත් ඕනෑම තැනකින්ද hardware මිලදී ගත හැක.',
+      en: 'We recommend verified hardware and link you directly to genuine wholesale vendors at real market prices without any markup. You are also completely free to use any existing or third-party hardware.'
+    }
+  },
+  {
+    q: {
+      si: 'මුදල් ආපසු ගෙවීමේ ප්‍රතිපත්තිය (Refund Policy) කුමක්ද?',
+      en: 'What is your refund policy?'
+    },
+    a: {
+      si: pricingData.refund.si,
+      en: pricingData.refund.en
+    }
+  },
+  {
+    q: {
+      si: 'නොමිලේ ලබාදෙන Support සහ Warranty එකට අයිති නැත්තේ මොනවාද?',
+      en: 'What is excluded from free support and warranty?'
+    },
+    a: {
+      si: 'Hardware දෝෂ (PC කැඩීම්, Windows/Virus දෝෂ), පරිශීලක නොසැලකිල්ලෙන් සිදුවන දත්ත අහිමි වීම්, සහ මුලින් එකඟ වූ විෂය පථයෙන් පිටත අලුත් custom features නොමිලේ support එකට අයිති නොවේ.',
+      en: 'Physical hardware failures, data loss caused by customer negligence (such as formatting drives), and new custom features outside the agreed project scope are quoted separately.'
+    }
+  }
+];
+---
+
+<section class="pricing-faq-section" aria-labelledby="pricing-faq-heading">
+  <div class="pricing-faq-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'මිල පිළිබඳ නිතර අසන ප්‍රශ්න' : 'Pricing FAQs'}
+      </span>
+      <h2 id="pricing-faq-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ගෙවීම් සහ මිල ගණන් පිළිබඳ <span class="text-cyan">පැහැදිලි තොරතුරු</span>
+          </>
+        ) : (
+          <>
+            Payment & Pricing <span class="text-cyan">Frequently Asked Questions</span>
+          </>
+        )}
+      </h2>
+    </div>
+
+    <div class="faq-list">
+      {pricingFaqs.map((faq, idx) => (
+        <details class="faq-card" open={idx === 0}>
+          <summary class="faq-q">
+            <span class="q-title">{faq.q[lang]}</span>
+            <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </summary>
+          <div class="faq-a">
+            <p>{faq.a[lang]}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-faq-section {
+    padding: 5rem 1.25rem 6rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .pricing-faq-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-card:hover,
+  .faq-card[open] {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+
+  .q-title {
+    flex: 1;
+  }
+
+  .chevron-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-card[open] .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-a {
+    padding: 0 1.5rem 1.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    border-top: 1px solid rgba(18, 40, 58, 0.5);
+    padding-top: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chevron-icon {
+      transition: none !important;
+    }
+  }
+</style>

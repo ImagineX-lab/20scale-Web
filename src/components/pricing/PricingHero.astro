@@ -1,0 +1,242 @@
+---
+import pricingData from '../../../content/pricing.json';
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const principles = pricingData.principles;
+---
+
+<section class="pricing-hero" aria-labelledby="pricing-hero-heading">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="pricing-hero-container">
+    <div class="badge-wrap">
+      <span class="hero-badge">
+        {lang === 'si' ? 'විනිවිද මිල ප්‍රතිපත්තිය' : 'Transparent Pricing Policy'}
+      </span>
+    </div>
+
+    <h1 id="pricing-hero-heading" class="hero-title">
+      {lang === 'si' ? (
+        <>
+          සැඟවුණු ගාස්තු නැති <span class="text-cyan">එකම අවංක මිලක්</span>
+        </>
+      ) : (
+        <>
+          Predictable Investment. <span class="text-cyan">Zero Hidden Fees.</span>
+        </>
+      )}
+    </h1>
+
+    <p class="hero-desc">
+      {lang === 'si'
+        ? 'ඔබ ගෙවන්නේ කුමකටද, මිල හැදෙන්නේ කෙසේද යන්න මුල සිටම විනිවිදව පෙන්වනු ලැබේ. මාසික subscription ගාස්තු නැත; සම්පූර්ණ ගෙවීමෙන් පසු පද්ධතිය ඔබ සතුය.'
+        : 'See exactly what you pay for and how every rupee is accounted for. No surprise monthly charges, no vendor markups. Once paid, the software is fully yours.'}
+    </p>
+
+    <!-- 4 Principles Grid -->
+    <div class="principles-grid" role="list">
+      {principles.map((item, idx) => (
+        <div class="principle-card" role="listitem">
+          <div class="principle-icon-wrap" aria-hidden="true">
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <p class="principle-text">{item[lang]}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Quick Jump to Calculator CTA -->
+    <div class="jump-actions">
+      <a href="#quote-calculator" class="jump-calc-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="calc-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+        <span>{lang === 'si' ? 'මිල ගණනය කිරීමේ Calculator එකට යන්න' : 'Jump to Interactive Quote Calculator'}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="arrow-down" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-hero {
+    position: relative;
+    padding: 4.5rem 1.25rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 229, 229, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  .pricing-hero-container {
+    position: relative;
+    max-width: 1050px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .badge-wrap {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(0, 229, 229, 0.2);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+    text-shadow: 0 0 28px rgba(0, 229, 229, 0.3);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .principles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .principle-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .principle-card:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+  }
+
+  .principle-icon-wrap {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(61, 220, 151, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-success);
+  }
+
+  .principle-text {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .jump-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .jump-calc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    box-shadow: 0 0 16px rgba(0, 229, 229, 0.15);
+  }
+
+  .jump-calc-btn:hover {
+    background: var(--color-primary);
+    color: #00030B;
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(0, 229, 229, 0.35);
+  }
+
+  .calc-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .arrow-down {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s;
+  }
+
+  .jump-calc-btn:hover .arrow-down {
+    transform: translateY(2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .principle-card,
+    .jump-calc-btn,
+    .arrow-down {
+      transition: none !important;
+    }
+  }
+</style>

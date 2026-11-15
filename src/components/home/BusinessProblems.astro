@@ -1,0 +1,248 @@
+---
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const problems = [
+  {
+    icon: 'bill',
+    title: {
+      si: 'මන්දගාමී බිල්පත් සහ දිගු පෝලිම්',
+      en: 'Slow Billing & Customer Queues'
+    },
+    desc: {
+      si: 'කාර්යබහුල වේලාවන්හිදී අතින් ලියන ලෙජර් පොත් සහ සංකීර්ණ පද්ධති නිසා පාරිභෝගිකයින් පෝලිම්වල රස්තියාදු වීම.',
+      en: 'Paper ledgers and sluggish software create painful bottlenecks at checkout during peak rush hours.'
+    }
+  },
+  {
+    icon: 'wifi-off',
+    title: {
+      si: 'අන්තර්ජාලය නැතිවිට වැඩ ඇනහිටීම',
+      en: 'Software Halts When Internet Drops'
+    },
+    desc: {
+      si: 'සාමාන්‍ය cloud මෘදුකාංග අන්තර්ජාලය හෝ විදුලිය ඇනහිටි විට සම්පූර්ණයෙන්ම ක්‍රියා විරහිත වී ව්‍යාපාරය නවතී.',
+      en: 'Most cloud software fails when the local internet cuts out or slows down, completely halting store sales.'
+    }
+  },
+  {
+    icon: 'inventory',
+    title: {
+      si: 'තොග හිඟවීම් සහ ගණන් නොකළ ණය',
+      en: 'Stock Leaks & Forgotten Customer Credits'
+    },
+    desc: {
+      si: 'භාණ්ඩ අවසන් වනතුරු නොදැනීම, තොග නොගැලපීම සහ අතින් ලියූ ණය සටහන් නිසා මුදල් නැතිවීම.',
+      en: 'Items go out of stock without notice, inventory counts mismatch, and credit books lead to unrecovered revenue.'
+    }
+  },
+  {
+    icon: 'hidden-fee',
+    title: {
+      si: 'සැඟවුණු මාසික ගාස්තු සහ අනවශ්‍ය සංකීර්ණතා',
+      en: 'Hidden Recurring Fees & Bloatware'
+    },
+    desc: {
+      si: 'ඔබට අනවශ්‍ය features සඳහා මාසිකව මුදල් අයකිරීම සහ සේවකයින්ට තේරුම් ගැනීමට අපහසු පද්ධති.',
+      en: 'Paying heavy ongoing subscriptions for confusing dashboards that staff cannot easily operate.'
+    }
+  }
+];
+---
+
+<section class="problems-section" aria-labelledby="problems-heading">
+  <div class="problems-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'ව්‍යාපාරික අභියෝග' : 'Ground Realities'}
+      </span>
+      <h2 id="problems-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ඔබේ ව්‍යාපාරයේ දෛනික වැඩකටයුතු <span class="text-cyan">මන්දගාමී කරන</span> ගැටලු
+          </>
+        ) : (
+          <>
+            The Costly Friction Slowing Down <span class="text-cyan">Real-World Businesses</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {lang === 'si'
+          ? 'සාමාන්‍ය වෙළඳසැල් හිමිකරුවන්ට අවශ්‍ය සංකීර්ණ dashboards නොව, සැබෑ බිම් මට්ටමේ ගැටලුවලට සරල සහ විශ්වාසදායක විසඳුම්ය.'
+          : 'Store owners do not need complicated corporate bloatware. They need lightning-fast, reliable tools built for how shops actually operate.'}
+      </p>
+    </div>
+
+    <div class="problems-grid">
+      {problems.map((item) => (
+        <div class="problem-card">
+          <div class="problem-icon-wrap" aria-hidden="true">
+            <svg class="problem-alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <h3 class="problem-card-title">{item.title[lang]}</h3>
+          <p class="problem-card-desc">{item.desc[lang]}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="solution-banner">
+      <div class="banner-content">
+        <span class="banner-badge">20Scale Commitment</span>
+        <p class="banner-text">
+          {lang === 'si'
+            ? 'අපි සූදානම් කළ pre-made packages විකුණන්නේ නැත. අපි ඔබේ ව්‍යාපාරයටම පැමිණ, වැඩපිළිවෙල අධ්‍යයනය කර, ඔබට සැබවින්ම ගැළපෙන ඩිජිටල් කොඳු නාරටිය නිර්මාණය කරමු.'
+            : 'We do not sell rigid one-size-fits-all packages. We study your exact workflow on-site and engineer the custom software your business actually needs.'}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .problems-section {
+    padding: 5rem 1.25rem;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .problems-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .problems-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .problems-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .problem-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .problem-card:hover {
+    border-color: rgba(255, 92, 108, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .problem-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 92, 108, 0.12);
+    color: var(--color-danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .problem-alert-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .problem-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.625rem;
+    line-height: 1.35;
+  }
+
+  .problem-card-desc {
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .solution-banner {
+    background: linear-gradient(135deg, rgba(7, 16, 28, 0.95) 0%, rgba(11, 23, 38, 0.95) 100%);
+    border: 1px solid rgba(0, 229, 229, 0.3);
+    border-radius: var(--radius-card);
+    padding: 1.75rem 2rem;
+    box-shadow: 0 0 24px rgba(0, 229, 229, 0.08);
+  }
+
+  .banner-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-text {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .problem-card {
+      transition: none !important;
+    }
+  }
+</style>

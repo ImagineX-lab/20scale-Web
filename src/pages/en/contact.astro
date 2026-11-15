@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactContent from '../../components/contact/ContactContent.astro';
+
+const lang = 'en' as const;
+const title = 'Contact Us | 20Scale Solutions';
+const description = 'Get in touch with 20Scale Solutions. Call, WhatsApp, or send an inquiry for a free software discovery session.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <ContactContent lang={lang} />
+</Layout>

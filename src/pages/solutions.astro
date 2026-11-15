@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SolutionsHero from '../components/solutions/SolutionsHero.astro';
+import SolutionsList from '../components/solutions/SolutionsList.astro';
+import IndustriesGrid from '../components/solutions/IndustriesGrid.astro';
+import ContactCta from '../components/home/ContactCta.astro';
+import { getLang } from '../i18n/index';
+
+const lang = getLang(Astro.url); // 'si'
+const title = 'මෘදුකාංග විසඳුම් | 20Scale Solutions';
+const description = 'ශ්‍රී ලංකාවේ ව්‍යාපාර සඳහා POS, inventory, ERP සහ custom software විසඳුම්. 100% Offline-First සහ Cloud පද්ධති.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <SolutionsHero lang={lang} />
+  <SolutionsList lang={lang} />
+  <IndustriesGrid lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>

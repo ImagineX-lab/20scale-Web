@@ -1,0 +1,228 @@
+---
+import type { Lang } from '../../i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const reasons = [
+  {
+    icon: 'custom',
+    title: {
+      si: '100% ඔබටම ගැලපෙන නිර්මාණය',
+      en: '100% Custom-Tailored Workflow'
+    },
+    desc: {
+      si: 'සූදානම් කළ generic packages නොවේ. ඔබේ ව්‍යාපාරයේ සැබෑ අවශ්‍යතා මත පදනම්ව විශේෂයෙන්ම ගොඩනගනු ලැබේ.',
+      en: 'No rigid, one-size-fits-all software. Every system is engineered after carefully studying your specific daily business workflow.'
+    }
+  },
+  {
+    icon: 'offline',
+    title: {
+      si: 'අන්තර්ජාලය නැතිව 100% ක්‍රියාත්මක වීම',
+      en: 'True Offline-First Reliability'
+    },
+    desc: {
+      si: 'Internet බිඳවැටුණද විදුලිය ඇනහිටියද ඔබේ විකුණුම් හා බිල්පත් සැකසීම කිසිදු තත්පරයකටත් නතර නොවේ.',
+      en: 'Local, high-speed execution guarantees that checkout counters and inventory updates never stop during internet or power drops.'
+    }
+  },
+  {
+    icon: 'pricing',
+    title: {
+      si: 'සැඟවුණු ගාස්තු නැති එකම විනිවිද මිල',
+      en: 'Clear One-Time Pricing, No Surprises'
+    },
+    desc: {
+      si: 'ඔබට පෙනෙන්නේ එකම මුළු මිලක් සහ එය හැදෙන ආකාරයයි. සැඟවුණු මාසික ගාස්තු හෝ අමතර charges නැත.',
+      en: 'You see one upfront project price with a line-by-line cost breakdown. No hidden subscription fees or surprise service costs.'
+    }
+  },
+  {
+    icon: 'training',
+    title: {
+      si: 'නොමිලේ සේවක පුහුණුව සහ User Manual',
+      en: 'Free On-site Setup & Staff Training'
+    },
+    desc: {
+      si: 'අපේ කණ්ඩායම ඔබේ ව්‍යාපාරයට පැමිණ සියල්ල සකසා, ඔබේ සේවකයින්ට මුල සිට නොමිලේ ප්‍රායෝගික පුහුණුව ලබාදෙයි.',
+      en: 'We visit your business in person, configure printers/devices, and train your staff until they are completely confident.'
+    }
+  },
+  {
+    icon: 'hardware',
+    title: {
+      si: 'සැබෑ මිලටම Vendor Hardware සම්බන්ධතාව',
+      en: 'Direct Hardware at Genuine Vendor Rates'
+    },
+    desc: {
+      si: 'Hardware සඳහා අතරමැදි කොමිස් නැත; අප නිර්දේශ කරන විශ්වාසවන්ත vendor ගේ සැබෑ මිලටම සෘජුව මිලදී ගත හැක.',
+      en: 'We recommend proven POS hardware and link you directly to the verified vendor at genuine trade rates without markups.'
+    }
+  },
+  {
+    icon: 'support',
+    title: {
+      si: 'විනාඩි 30ක හදිසි තාක්ෂණික සහාය',
+      en: '30-Minute Rapid Response Guarantee'
+    },
+    desc: {
+      si: 'බරපතළ දෝෂයකදී විනාඩි 30ක් ඇතුළත ඉංජිනේරුවෙකු remote සම්බන්ධ වී විසඳුම ලබාදෙයි. 24/7 WhatsApp hotline පහසුකම.',
+      en: 'For critical counter stoppages, an engineer connects remotely within 30 minutes. Direct 24/7 WhatsApp emergency hotline.'
+    }
+  }
+];
+---
+
+<section class="why-section" aria-labelledby="why-heading">
+  <div class="why-container">
+    <div class="section-header">
+      <span class="section-tag">
+        {lang === 'si' ? 'අපගේ සුවිශේෂත්වය' : 'The 20Scale Advantage'}
+      </span>
+      <h2 id="why-heading" class="section-title">
+        {lang === 'si' ? (
+          <>
+            ව්‍යාපාරිකයන් 20Scale විශ්වාස කිරීමට <span class="text-cyan">ප්‍රධාන හේතු 6</span>
+          </>
+        ) : (
+          <>
+            Engineered with Integrity: <span class="text-cyan">Why Businesses Choose 20Scale</span>
+          </>
+        )}
+      </h2>
+      <p class="section-sub">
+        {lang === 'si'
+          ? 'ව්‍යාපාරිකයන්ට අවශ්‍ය ප්‍රායෝගික සාධක: විශ්වාසදායක තාක්ෂණය, විනිවිද මිල ගණන් සහ ප්‍රායෝගික සේවය.'
+          : 'Built on transparency, verified technical architecture, and dedicated on-site partnership.'}
+      </p>
+    </div>
+
+    <div class="why-grid">
+      {reasons.map((item, idx) => (
+        <div class="why-card">
+          <div class="why-number" aria-hidden="true">0{idx + 1}</div>
+          <h3 class="why-title">{item.title[lang]}</h3>
+          <p class="why-desc">{item.desc[lang]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-section {
+    padding: 5.5rem 1.25rem;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .why-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(0, 229, 229, 0.1);
+    padding: 0.25rem 0.875rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .text-cyan {
+    color: var(--color-primary);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .why-card {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 2rem 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .why-card:hover {
+    border-color: rgba(0, 229, 229, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .why-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-primary-muted);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .why-title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.625rem;
+    line-height: 1.35;
+  }
+
+  .why-desc {
+    font-size: 0.8875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .why-card {
+      transition: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactContent from '../components/contact/ContactContent.astro';
+import { getLang } from '../i18n/index';
+
+const lang = getLang(Astro.url); // 'si'
+const title = 'සම්බන්ධ වන්න | 20Scale Solutions';
+const description = '20Scale Solutions හා සම්බන්ධ වන්න. WhatsApp, දුරකථන හෝ ඊමේල් හරහා නොමිලේ මෘදුකාංග උපදේශනයක් ලබාගන්න.';
+---
+
+<Layout title={title} lang={lang} description={description}>
+  <ContactContent lang={lang} />
+</Layout>

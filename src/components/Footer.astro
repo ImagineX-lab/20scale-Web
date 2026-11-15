@@ -1,12 +1,16 @@
 ---
 import type { Lang } from '../i18n/index';
 import { t } from '../i18n/index';
+import companyData from '../../content/company.json';
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
+const phone = companyData.contact?.phone;
+const email = companyData.contact?.email;
+const operatingArea = companyData.operatingModel?.serviceArea || 'Sri Lanka';
 
 const navLinks = [
   { key: 'nav.home',      path: '/' },
@@ -34,24 +38,44 @@ function resolveHref(path: string): string {
         2<span class="logo-zero">0</span>Scale
       </a>
       <p class="footer-tagline">{t(lang, 'footer.tagline')}</p>
-      <a href={`mailto:${t(lang, 'footer.email')}`} class="footer-email">
-        {t(lang, 'footer.email')}
-      </a>
+      
+      <div class="footer-contacts">
+        {email && (
+          <a href={`mailto:${email}`} class="footer-contact-link">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>{email}</span>
+          </a>
+        )}
+        {phone?.link && (
+          <a href={phone.link} class="footer-contact-link">
+            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span>{phone.number}</span>
+          </a>
+        )}
+      </div>
     </div>
 
     <!-- Nav links -->
     <nav class="footer-nav" aria-label="Footer navigation">
-      {navLinks.map(({ key, path }) => (
-        <a href={resolveHref(path)} class="footer-link">
-          {t(lang, key)}
-        </a>
-      ))}
+      <h3 class="footer-nav-title">{lang === 'si' ? 'පිටු සහ සබැඳි' : 'Quick Navigation'}</h3>
+      <div class="nav-links-grid">
+        {navLinks.map(({ key, path }) => (
+          <a href={resolveHref(path)} class="footer-link">
+            {t(lang, key)}
+          </a>
+        ))}
+      </div>
     </nav>
   </div>
 
   <!-- Copyright -->
   <div class="footer-bottom">
     <p class="footer-copy">{t(lang, 'footer.copyright')}</p>
+    <p class="footer-area">{operatingArea}</p>
   </div>
 </footer>
 
@@ -65,10 +89,10 @@ function resolveHref(path: string): string {
   .footer-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 1.25rem 2rem;
+    padding: 3.5rem 1.25rem 2.5rem;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 
   /* ---- Brand column ---- */
@@ -90,26 +114,47 @@ function resolveHref(path: string): string {
     font-size: 0.9375rem;
     line-height: 1.6;
     max-width: 36ch;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 
-  .footer-email {
-    font-size: 0.9375rem;
-    color: var(--color-primary);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  .footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
     transition: color 0.2s;
   }
-  .footer-email:hover {
-    color: var(--color-text);
+  .footer-contact-link:hover {
+    color: var(--color-primary);
+  }
+
+  .contact-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-primary);
+    flex-shrink: 0;
   }
 
   /* ---- Nav column ---- */
-  .footer-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    align-content: flex-start;
+  .footer-nav-title {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .nav-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.625rem 1.5rem;
   }
 
   .footer-link {
@@ -130,6 +175,11 @@ function resolveHref(path: string): string {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .footer-copy {
@@ -137,16 +187,24 @@ function resolveHref(path: string): string {
     font-size: 0.8125rem;
   }
 
+  .footer-area {
+    color: var(--color-text-muted);
+    font-size: 0.775rem;
+  }
+
   /* ---- Responsive ---- */
   @media (min-width: 640px) {
     .footer-inner {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.2fr 1fr;
+    }
+    .footer-bottom {
+      flex-direction: row;
     }
   }
 
   /* ---- Reduced motion ---- */
   @media (prefers-reduced-motion: reduce) {
-    .footer-email,
+    .footer-contact-link,
     .footer-link {
       transition: none !important;
     }
